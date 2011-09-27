@@ -1,0 +1,6 @@
+cmake_minimum_required( VERSION 2.8 )
+project(HackThePlanet)
+enable_language( CXX )
+include_directories( "include" )
+add_executable( HackThePlanet **.cpp )
+target_link_libraries( HackThePlanet boost_random boost_filesystem boost_iostreams boost_date_time boost_chrono )
