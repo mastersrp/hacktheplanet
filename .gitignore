@@ -4,11 +4,13 @@
 *.a
 *.exe
 *.tmp
-# Files and folders we DO NOT want.
+# CMAKE
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
+install_manifest.txt
+# Other
 bin/HackThePlanet
 lib/
 build.sh
