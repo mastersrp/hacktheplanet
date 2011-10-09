@@ -6,4 +6,5 @@ include_directories( "include" )
 FIND_LIBRARY( Rendersystem_GL REQUIRED )
 FILE( GLOB_RECURSE HackThePlanet_SRCS src/*.cpp )
 add_executable( HackThePlanet ${HackThePlanet_SRCS} )
-target_link_libraries( HackThePlanet rt boost_random boost_filesystem boost_iostreams boost_date_time GL glut )
+target_link_libraries( HackThePlanet rt boost_random boost_filesystem
+boost_iostreams boost_date_time dl lua )

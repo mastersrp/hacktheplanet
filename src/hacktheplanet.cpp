@@ -11,6 +11,8 @@
 #include <boost/foreach.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+// LUA
+#include <lua.hpp>
 
 int main( int argc, char *argv[] )
 {
