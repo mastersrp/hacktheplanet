@@ -1,4 +1,10 @@
+# File extension matching
 *.swp
+*.so
+*.a
+*.exe
+*.tmp
+# Files and folders we DO NOT want.
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
