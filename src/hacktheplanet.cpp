@@ -23,7 +23,7 @@ int main( int argc, char *argv[] )
     lua_State *scriptEngine = lua_open();
     luaL_openlibs(scriptEngine);
     luaL_dofile( scriptEngine, "data/engine.lua" );
-    htp::lua::hook scriptHook(scriptEngine);
+    HTP::lua::hook scriptHook(scriptEngine);
     scriptHook.onInit();
     std::cout << "[*] Loading settings...";
     boost::property_tree::ptree settings;
@@ -48,7 +48,7 @@ int main( int argc, char *argv[] )
     std::cout << "Using '" << profile << "' profile." << std::endl;
     std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin", "data/DefaultSkin.png" );
     std::cout << "skin:  " << profile_skin << std::endl;
-
+    scriptHook.onExit();
     lua_close(scriptEngine);
     return 0;
 }

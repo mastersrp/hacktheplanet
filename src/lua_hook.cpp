@@ -14,15 +14,20 @@
 // CUSTOM
 #include <htp/lua_hook.hpp>
 
-htp::lua::hook::hook(lua_State *L){
+HTP::lua::hook::hook(lua_State *L){
 	scriptEngine = L;
 }
 
-int htp::lua::hook::onInit() {
+int HTP::lua::hook::onInit() {
 	std::cout << "[*] CALL 'onInit' HOOK" << std::endl;
 	return 0;
 }
-int htp::lua::hook::onExit() {
+int HTP::lua::hook::onExit() {
 	std::cout << "[*] CALL 'onExit' HOOK" << std::endl;
+	return 0;
+}
+int HTP::lua::hook::onCustom( const char *hook )
+{
+	std::cout << "[*] CALL '" << hook << "' HOOK" << std::endl;
 	return 0;
 }
