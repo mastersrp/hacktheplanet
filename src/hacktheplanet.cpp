@@ -6,14 +6,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-// OPENGL
-#include <GL/gl.h>
-#include <GL/glut.h>
-#ifdef __WIN32
-#   include <GL/wglext.h>
-#else
-#   include <GL/glext.h>
-#endif
 // BOOST C++
 #include <boost/random.hpp>
 #include <boost/foreach.hpp>
@@ -39,13 +31,5 @@ int main( int argc, char *argv[] )
     std::cout << "Using '" << profile << "' profile." << std::endl;
     std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin", "data/DefaultSkin.png" );
     std::cout << "skin:  " << profile_skin << std::endl;
-    /*
-    // Graphics init
-    glutInit();
-    glutInitDispayMode( GLUT_SINGLE );
-    glutInitWindowSize( 500, 500 );
-    glutInitWindowPosition(200,200);
-    glutCreateWindow("HackThePlanet");
-    */
     return 0;
 }
