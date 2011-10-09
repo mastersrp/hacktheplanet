@@ -37,7 +37,7 @@ int main( int argc, char *argv[] )
     	std::cout << "Could NOT find your profile name!" << std::endl;
     }
     std::cout << "Using '" << profile << "' profile." << std::endl;
-    std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin" );
+    std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin", "data/DefaultSkin.png" );
     std::cout << "skin:  " << profile_skin << std::endl;
     /*
     // Graphics init
