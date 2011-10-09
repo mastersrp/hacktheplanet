@@ -24,14 +24,21 @@ int main( int argc, char *argv[] )
 {
     boost::property_tree::ptree settings;
     std::ifstream settings_file;
-    settings_file.open("settings.json");
+    settings_file.open("data/settings.json");
     if( !settings_file ) { std::cerr << "Couldn't open 'settings.json'!" << std::endl; return 1; }
 
-    boost::property_tree::read_json( "settings.json", settings );
-    
-    std::cout << settings.get<std::string>("profile", "default") << std::endl;
-    std::string path_data = settings.get<std::string>("paths.data", "data");
-    std::cout << "path(data): " << path_data << std::endl;
+    boost::property_tree::read_json( "data/settings.json", settings );
+    std::cout << "Please enter your profile name: ";
+    char profile_in[256];
+    std::cin.getline(profile_in, 255);
+    std::string profile = settings.get<std::string>(profile_in, "default" );
+    if( profile == "default" )
+    {
+    	std::cout << "Could NOT find your profile name!" << std::endl;
+    }
+    std::cout << "Using '" << profile << "' profile." << std::endl;
+    std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin" );
+    std::cout << "skin:  " << profile_skin << std::endl;
     /*
     // Graphics init
     glutInit();
