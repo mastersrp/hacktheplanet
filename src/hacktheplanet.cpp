@@ -1,7 +1,7 @@
 /*
-    This file is part of the HackThePlanet project.
-    License is in COPYING file.
-*/
+ * This file is part of the HackThePlanet project.
+ * License is in COPYING file.
+ */
 #include <config.hpp>
 // STD LIBS
 #include <iostream>
