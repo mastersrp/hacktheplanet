@@ -21,14 +21,17 @@ HTP::lua::hook::hook(lua_State *L){
 
 int HTP::lua::hook::onInit() {
 	std::cout << "[*] CALL 'onInit' HOOK" << std::endl;
+	htp::lua::dofunction(L, (const char*)"onInit");
 	return 0;
 }
 int HTP::lua::hook::onExit() {
 	std::cout << "[*] CALL 'onExit' HOOK" << std::endl;
+	htp::lua::dofunction(L, (const char*)"onExit");
 	return 0;
 }
 int HTP::lua::hook::onCustom( const char *hook )
 {
 	std::cout << "[*] CALL '" << hook << "' HOOK" << std::endl;
+	htp::lua::dofunction(L, hook);
 	return 0;
 }
