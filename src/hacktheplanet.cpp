@@ -15,7 +15,7 @@
 // LUA
 #include <lua.hpp>
 // CUSTOM
-#include <htp/lua_hook.hpp>
+#include <htp/lua.hpp>
 
 int main( int argc, char *argv[] )
 {
