@@ -5,9 +5,6 @@
 #ifndef LUA_ERROR_HANDLING_HPP
 #define LUA_ERROR_HANDLING_HPP
 #include <config.hpp>
-#ifndef LUA_ERROR_HANDLING
-#define LUA_ERROR_HANDLING htp::lua::report_errors
-#endif
 // STD LIBS
 #include <iostream>
 // LUA
@@ -23,4 +20,7 @@ namespace htp {
 		}
 	}
 }
+#ifndef LUA_ERROR_HANDLING
+#	define LUA_ERROR_HANDLING htp::lua::report_errors
+#endif
 #endif /* LUA_ERROR_HANDLING_HPP */
