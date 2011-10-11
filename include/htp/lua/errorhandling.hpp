@@ -2,25 +2,17 @@
  * This file is part of the HackThePlanet project.
  * License is in COPYING file.
  */
-#ifndef LUA_ERROR_HANDLING_HPP
-#define LUA_ERROR_HANDLING_HPP
+#ifndef HTP_LUA_ERROR_HANDLING_HPP
+#define HTP_LUA_ERROR_HANDLING_HPP
 #include <config.hpp>
 // STD LIBS
 #include <iostream>
 // LUA
 #include <lua.hpp>
 
-namespace htp {
+namespace HTP {
 	namespace lua {
-		void report_errors(lua_State *L, int status ){
-			if( stauts != 0 ) {
-				std::cerr << "-- " << lua_tostring(L,-1) << std::endl;
-				lua_pop(L,1);
-			}
-		}
+		void report_errors(lua_State *L, int status );
 	}
 }
-#ifndef LUA_ERROR_HANDLING
-#	define LUA_ERROR_HANDLING htp::lua::report_errors
-#endif
 #endif /* LUA_ERROR_HANDLING_HPP */

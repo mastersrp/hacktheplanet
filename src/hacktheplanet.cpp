@@ -22,7 +22,8 @@ int main( int argc, char *argv[] )
     std::cout << "[*I Initializing lua" << std::endl;
     lua_State *scriptEngine = lua_open();
     luaL_openlibs(scriptEngine);
-    luaL_dofile( scriptEngine, "data/engine.lua" );
+    int scriptEngine_ret = luaL_dofile( scriptEngine, "data/engine.lua" );
+	HTP::lua::report_errors(scriptEngine, scriptEngine_ret );
     HTP::lua::hook scriptHook(scriptEngine);
     scriptHook.onInit();
     std::cout << "[*] Loading settings...";
@@ -30,10 +31,10 @@ int main( int argc, char *argv[] )
     std::ifstream settings_file;
     settings_file.open("data/settings.json");
     if( !settings_file ) {
-	std::cerr << "Couldn't open 'settings.json'!" << std::endl;
-	scriptHook.onExit();
-	lua_close(scriptEngine);
-	return 1;
+		std::cerr << "Couldn't open 'settings.json'!" << std::endl;
+		scriptHook.onExit();
+		lua_close(scriptEngine);
+		return 1;
     }
     std::cout << "Done!" << std::endl;
     boost::property_tree::read_json( "data/settings.json", settings );
@@ -41,8 +42,7 @@ int main( int argc, char *argv[] )
     char profile_in[256];
     std::cin.getline(profile_in, 256);
     std::string profile = settings.get<std::string>(profile_in, "default" );
-    if( profile == "default" )
-    {
+    if( profile == "default" ) {
     	std::cout << "Could NOT find your profile name!" << std::endl;
     }
     std::cout << "Using '" << profile << "' profile." << std::endl;

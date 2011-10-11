@@ -5,15 +5,9 @@
 #include <config.hpp>
 // STD LIBS
 #include <iostream>
-#include <fstream>
-#include <string>
-// BOOST C++
-#include <boost/filesystem.hpp>
 // LUA
 #include <lua.hpp>
-// CUSTOM
-#include <htp/lua/hook.hpp>
-#include <htp/lua/dofunction.hpp>
+#include <htp/lua.hpp>
 
 HTP::lua::hook::hook(lua_State *L){
 	scriptEngine = L;
@@ -21,17 +15,18 @@ HTP::lua::hook::hook(lua_State *L){
 
 int HTP::lua::hook::onInit() {
 	std::cout << "[*] CALL 'onInit' HOOK" << std::endl;
-	htp::lua::dofunction(L, (const char*)"onInit");
+	HTP::lua::dofunction(scriptEngine, (const char*)"onInit");
 	return 0;
 }
 int HTP::lua::hook::onExit() {
 	std::cout << "[*] CALL 'onExit' HOOK" << std::endl;
-	htp::lua::dofunction(L, (const char*)"onExit");
+	HTP::lua::dofunction(scriptEngine, (const char*)"onExit");
 	return 0;
 }
 int HTP::lua::hook::onCustom( const char *hook )
 {
 	std::cout << "[*] CALL '" << hook << "' HOOK" << std::endl;
-	htp::lua::dofunction(L, hook);
+	HTP::lua::dofunction(scriptEngine, hook);
 	return 0;
+
 }
