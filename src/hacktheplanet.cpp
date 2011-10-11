@@ -22,8 +22,7 @@ int main( int argc, char *argv[] )
     std::cout << "[*I Initializing lua" << std::endl;
     lua_State *scriptEngine = lua_open();
     luaL_openlibs(scriptEngine);
-    int scriptEngine_ret = luaL_dofile( scriptEngine, "data/engine.lua" );
-	HTP::lua::report_errors(scriptEngine, scriptEngine_ret );
+	HTP::lua::report_errors(scriptEngine, luaL_dofile(scriptEngine, "data/engine.lua"));
     HTP::lua::hook scriptHook(scriptEngine);
     scriptHook.onInit();
     std::cout << "[*] Loading settings...";
