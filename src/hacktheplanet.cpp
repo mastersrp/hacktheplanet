@@ -39,19 +39,7 @@ int main( int argc, char *argv[] )
     }
     std::cout << "Done!" << std::endl;
     boost::property_tree::read_json( "data/settings.json", settings );
-	std::string profile;
-	if( settings.get<std::string>("profile", "default") == "default" ) {
-    	std::cout << "Please enter your profile name: ";
-    	char profile_in[256];
-    	std::cin.getline(profile_in, 256);
-		profile = settings.get<std::string>(profile_in, "default" );
-    	if( profile == "default" ) {
-    		std::cout << "Could NOT find your profile name!" << std::endl;
-			scriptHook.onCustom("onProfileNotFound");
-    	}
-	} else {
-		profile = settings.get<std::string>("profile", "default");
-	}
+	std::string profile = settings.get<std::string>("profile", "default");
     std::cout << "Using '" << profile << "' profile." << std::endl;
     std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin", "data/DefaultSkin.png" );
     std::cout << "skin:  " << profile_skin << std::endl;
