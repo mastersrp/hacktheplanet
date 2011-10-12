@@ -12,6 +12,7 @@
 int HTP::lua::initState( lua_State* L) {
 	lua_pushstring(L, "data/lua/include" );
 	lua_setglobal(L, "globalinclude" );
+	lua_register(L, "include", HTP::lua_functions::include );
 	return 0;
 }
 int HTP::lua::endState( lua_State* L ) {

@@ -22,10 +22,9 @@ int main( int argc, char *argv[] )
 	// Lua initialization
     std::cout << "[*I Initializing lua" << std::endl;
 	lua_State *scriptEngine = HTP::lua::createState();
-	HTP::lua::report_errors(scriptEngine, luaL_dofile(scriptEngine, "data/engine.lua"));
+	//HTP::lua::report_errors(scriptEngine, luaL_dofile(scriptEngine, "data/engine.lua"));
 	// Lua scriptHook creation
     HTP::lua::hook scriptHook;
-    scriptHook.onInit(scriptEngine);
 	// Settings parsing
     std::cout << "[*] Loading settings...";
     boost::property_tree::ptree settings;
@@ -43,6 +42,10 @@ int main( int argc, char *argv[] )
     std::cout << "Using '" << profile << "' profile." << std::endl;
     std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin", "data/DefaultSkin.png" );
     std::cout << "skin:  " << profile_skin << std::endl;
+	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
+	std::cout << "[*] Loading lua framework..." << std::endl;
+	HTP::lua::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
+	scriptHook.onInit(scriptEngine);
 	// Ending scriptHook
     scriptHook.onExit(scriptEngine);
 	// Ending lua scriptEngine
