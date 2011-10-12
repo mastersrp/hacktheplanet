@@ -14,12 +14,10 @@
 namespace HTP {
     namespace lua {
 	class hook {
-	    	lua_State *scriptEngine;
 	    public:
-	    	hook( lua_State *L);
-			int onInit();
-			int onExit();
-			int onCustom( const char *hook );
+			int onInit(lua_State *scriptEngine);
+			int onExit(lua_State *scriptEngine);
+			int onCustom(lua_State *scriptEngine, const char *hook );
 	};
 	}
 }

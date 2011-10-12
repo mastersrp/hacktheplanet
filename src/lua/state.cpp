@@ -14,6 +14,9 @@ int HTP::lua::initState( lua_State* L) {
 	lua_setglobal(L, "globalinclude" );
 	return 0;
 }
+int HTP::lua::endState( lua_State* L ) {
+	lua_close(L);
+}
 
 lua_State* HTP::lua::createState() {
 	lua_State *L = lua_open();

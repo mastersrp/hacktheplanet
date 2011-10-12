@@ -19,19 +19,22 @@
 
 int main( int argc, char *argv[] )
 {
+	// Lua initialization
     std::cout << "[*I Initializing lua" << std::endl;
 	lua_State *scriptEngine = HTP::lua::createState();
 	HTP::lua::report_errors(scriptEngine, luaL_dofile(scriptEngine, "data/engine.lua"));
-    HTP::lua::hook scriptHook(scriptEngine);
-    scriptHook.onInit();
+	// Lua scriptHook creation
+    HTP::lua::hook scriptHook;
+    scriptHook.onInit(scriptEngine);
+	// Settings parsing
     std::cout << "[*] Loading settings...";
     boost::property_tree::ptree settings;
     std::ifstream settings_file;
     settings_file.open("data/settings.json");
     if( !settings_file ) {
 		std::cerr << "Couldn't open 'settings.json'!" << std::endl;
-		scriptHook.onExit();
-		lua_close(scriptEngine);
+		scriptHook.onExit(scriptEngine);
+		HTP::lua::endState(scriptEngine);
 		return 1;
     }
     std::cout << "Done!" << std::endl;
@@ -40,7 +43,9 @@ int main( int argc, char *argv[] )
     std::cout << "Using '" << profile << "' profile." << std::endl;
     std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin", "data/DefaultSkin.png" );
     std::cout << "skin:  " << profile_skin << std::endl;
-    scriptHook.onExit();
-    lua_close(scriptEngine);
+	// Ending scriptHook
+    scriptHook.onExit(scriptEngine);
+	// Ending lua scriptEngine
+    HTP::lua::endState(scriptEngine);
     return 0;
 }
