@@ -20,10 +20,7 @@
 int main( int argc, char *argv[] )
 {
     std::cout << "[*I Initializing lua" << std::endl;
-    lua_State *scriptEngine = lua_open();
-    luaL_openlibs(scriptEngine);
-	lua_pushstring(scriptEngine, "data/lua/include" );
-	lua_setglobal(scriptEngine, "globalinclude");
+	lua_State *scriptEngine = HTP::lua::createState();
 	HTP::lua::report_errors(scriptEngine, luaL_dofile(scriptEngine, "data/engine.lua"));
     HTP::lua::hook scriptHook(scriptEngine);
     scriptHook.onInit();

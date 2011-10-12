@@ -6,6 +6,7 @@
 #define HTP_LUA_HPP
 #include <config.hpp>
 
+#include <htp/lua/state.hpp>
 #include <htp/lua/errorhandling.hpp>
 #include <htp/lua/dofunction.hpp>
 #include <htp/lua/hook.hpp>
