@@ -1,7 +1,7 @@
 function onInit()
-	print( "[*](LUA) Initiation has begun!" )
+	print( "[*-LUA] Initiation has begun!" )
 end
 
 function onExit()
-	print( "[*](LUA) Exiting..." )
+	print( "[*-LUA] Exiting..." )
 end
