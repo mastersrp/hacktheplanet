@@ -48,12 +48,11 @@ int main( int argc, char *argv[] )
 	HTP::lua::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
 	// Init scriptHook
 	scriptHook.onInit(scriptEngine);
-	std::string input = HTP::input::getcmdline();
-	while( input != "exit" )
-	{
-		HTP::input::interpcmdline(input);
-		input = HTP::input::getcmdline();
-	}
+	std::cout << profile[1] << std::endl;
+	// lua gameplay loop
+	//while( true ) {
+		HTP::lua::dofunction(scriptEngine, "mainloop" );
+	//}
 	// Ending scriptHook
     scriptHook.onExit(scriptEngine);
 	// Ending lua scriptEngine

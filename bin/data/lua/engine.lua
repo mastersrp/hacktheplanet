@@ -8,3 +8,12 @@
 include( globalinclude.."/profilecreator.lua" )
 include( globalinclude.."/json.lua" )
 include( globalinclude.."/hook.lua" )
+
+function mainloop()
+	stdin = io.input( io.stdin, "r" )
+	input = stdin:read()
+	while(input ~= "exit" ) do
+		print( "You wrote: "..input )
+		input = stdin:read()
+	end
+end
