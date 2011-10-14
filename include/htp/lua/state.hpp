@@ -4,7 +4,6 @@
  */
 #include <config.hpp>
 // STD LBIS
-#include <iostream>
 // LUA
 #include <lua.hpp>
 #include <htp/lua.hpp>

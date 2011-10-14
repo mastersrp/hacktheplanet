@@ -3,8 +3,6 @@
  * License is in COPYING file.
  */
 #include <config.hpp>
-// STD LIBS
-#include <iostream>
 // LUA
 #include <lua.hpp>
 #include <htp/lua.hpp>

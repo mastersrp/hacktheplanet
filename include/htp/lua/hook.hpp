@@ -6,8 +6,6 @@
 #define HTP_LUA_HOOK_HPP
 
 #include <config.hpp>
-// STD LIBS
-#include <iostream>
 // LUA
 #include <lua.hpp>
 

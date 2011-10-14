@@ -16,6 +16,7 @@
 #include <lua.hpp>
 // CUSTOM
 #include <htp/lua.hpp>
+#include <htp/input.hpp>
 
 int main( int argc, char *argv[] )
 {
@@ -45,7 +46,14 @@ int main( int argc, char *argv[] )
 	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	HTP::lua::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
+	// Init scriptHook
 	scriptHook.onInit(scriptEngine);
+	std::string input = HTP::input::getcmdline();
+	while( input != "exit" )
+	{
+		HTP::input::interpcmdline(input);
+		input = HTP::input::getcmdline();
+	}
 	// Ending scriptHook
     scriptHook.onExit(scriptEngine);
 	// Ending lua scriptEngine
