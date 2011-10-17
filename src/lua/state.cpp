@@ -17,6 +17,7 @@ int HTP::lua::initState( lua_State* L) {
 }
 int HTP::lua::endState( lua_State* L ) {
 	lua_close(L);
+	return 0;
 }
 
 lua_State* HTP::lua::createState() {
