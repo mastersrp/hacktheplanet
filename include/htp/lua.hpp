@@ -10,7 +10,6 @@
 #include <htp/lua/errorhandling.hpp>
 #include <htp/lua/dofunction.hpp>
 #include <htp/lua/hook.hpp>
-#include <htp/lua/tablecontrol.hpp>
 #include <htp/lua/functions/include.hpp>
 
 #endif /* HTP_LUA_HPP */

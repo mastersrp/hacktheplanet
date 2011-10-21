@@ -6,7 +6,6 @@
 // STD LBIS
 // LUA
 #include <lua.hpp>
-#include <htp/lua.hpp>
 
 namespace HTP {
 	namespace lua {
