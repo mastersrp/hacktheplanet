@@ -7,7 +7,7 @@
 #include <iostream>
 // LUA
 #include <lua.hpp>
-#include <htp/lua.hpp>
+#include <htp/lua/state.hpp>
 
 int HTP::lua::initState( lua_State* L) {
 	lua_pushstring(L, "data/lua/include" );

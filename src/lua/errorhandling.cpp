@@ -7,7 +7,7 @@
 #include <iostream>
 // LUA
 #include <lua.hpp>
-#include <htp/lua.hpp>
+#include <htp/lua/errorhandling.hpp>
 
 void HTP::lua::report_errors(lua_State *L, int status ) {
 	if( status != 0 ) {

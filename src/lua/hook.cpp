@@ -3,9 +3,11 @@
  * License is in COPYING file.
  */
 #include <config.hpp>
+#include <iostream>
 // LUA
 #include <lua.hpp>
-#include <htp/lua.hpp>
+#include <htp/lua/hook.hpp>
+#include <htp/lua/dofunction.hpp>
 
 int HTP::lua::hook::onInit(lua_State *scriptEngine) {
 	std::cout << "[*] CALL 'onInit' HOOK" << std::endl;

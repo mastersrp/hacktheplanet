@@ -9,7 +9,7 @@
 #include <boost/filesystem.hpp>
 // LUA
 #include <lua.hpp>
-#include <htp/lua.hpp>
+#include <htp/lua/dofunction.hpp>
 
 int HTP::lua::dofunction( lua_State *L, const char *function ) {
 	lua_getglobal(L, function);
