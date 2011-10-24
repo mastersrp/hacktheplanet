@@ -10,9 +10,9 @@ include( globalinclude.."/json.lua" )
 include( globalinclude.."/hook.lua" )
 
 function mainloop()
-	stdin = io.input( io.stdin, "r" )
-	input = stdin:read()
-	while(input ~= "exit" ) do
-		input = stdin:read()
-	end
+--	stdin = io.input( io.stdin, "r" )
+--	input = stdin:read()
+--	while(input ~= "exit" ) do
+--		input = stdin:read()
+--	end
 end

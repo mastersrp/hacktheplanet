@@ -17,6 +17,7 @@
 // CUSTOM
 #include <htp/lua.hpp>
 #include <htp/input.hpp>
+#include <htp/render.hpp>
 
 int main( int argc, char *argv[] )
 {
@@ -46,6 +47,14 @@ int main( int argc, char *argv[] )
 	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	HTP::lua::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
+	
+	HTP::render::glApp glApp;
+	glApp.init();
+	while( glApp.Running() )
+	{
+		std::cout << "Running." << std::endl;
+	}
+	
 	// Init scriptHook
 	scriptHook.onInit(scriptEngine);
 	// lua gameplay loop
