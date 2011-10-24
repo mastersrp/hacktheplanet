@@ -4,5 +4,5 @@ project( HackThePlanet )
 	file( GLOB_RECURSE HackThePlanet_SRCS *.cpp )
 	add_executable( HackThePlanet ${HackThePlanet_SRCS} )
 	target_link_libraries( HackThePlanet rt boost_random boost_filesystem
-		boost_iostreams boost_date_time GL dl lua htp_input htp_lua
+		boost_iostreams boost_date_time boost_chrono GL dl lua htp_input htp_lua
 		htp_render )

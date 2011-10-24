@@ -12,19 +12,26 @@
 #include <boost/foreach.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include <boost/chrono.hpp>
 // LUA
 #include <lua.hpp>
 // CUSTOM
 #include <htp/lua.hpp>
 #include <htp/input.hpp>
 #include <htp/render.hpp>
+#include <htp/util/timer.hpp>
 
 int main( int argc, char *argv[] )
 {
+	HTP::util::Timer timer_runtime;
+	HTP::util::Timer timer_loadtime;
+
+	timer_runtime.start();
+
 	// Lua initialization
     std::cout << "[*I Initializing lua" << std::endl;
+	timer_loadtime.start();
 	lua_State *scriptEngine = HTP::lua::createState();
-	//HTP::lua::report_errors(scriptEngine, luaL_dofile(scriptEngine, "data/engine.lua"));
 	// Lua scriptHook creation
     HTP::lua::hook scriptHook;
 	// Settings parsing
@@ -47,6 +54,7 @@ int main( int argc, char *argv[] )
 	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	HTP::lua::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
+	std::cout << "[i] Loading took '" << timer_loadtime.get_duration() << "' seconds." << std::endl;
 	
 	HTP::render::glApp glApp;
 	glApp.init();
@@ -63,5 +71,6 @@ int main( int argc, char *argv[] )
     scriptHook.onExit(scriptEngine);
 	// Ending lua scriptEngine
     HTP::lua::endState(scriptEngine);
+	std::cout << "[i] Ran for " << timer_runtime.get_duration() << " seconds." << std::endl;
     return 0;
 }
