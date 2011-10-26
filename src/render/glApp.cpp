@@ -1,16 +1,29 @@
 #include <config.hpp>
+#include <iostream>
+
 #include <htp/render/glApp.hpp>
 #include <GL/gl.h>
-#include <GL/glut.h>
+#include <GL/glfw.h>
 
 HTP::render::glApp::glApp()
 {
 	isrunning = false;
 	ispaused = false;
+
 }
 
-void HTP::render::glApp::init()
+bool HTP::render::glApp::init()
 {
+	if( glfwInit() == GL_FALSE )
+	{
+		std::cerr << "Couldn't init glfw!" << std::endl;
+		return false;
+	}
+	if( glfwOpenWindow( 640, 480, 0, 0, 0, 0, 32, 2, GLFW_WINDOW ) == GL_FALSE )
+	{
+		std::cerr << "Couldn't open window!" << std::endl;
+		return false;
+	}
 	isrunning = true;
 }
 
@@ -18,11 +31,9 @@ bool HTP::render::glApp::Running()
 {
 	if( isrunning == true && ispaused == false )
 	{
-		isrunning = false;
 		return isrunning;
 	}
-	isrunning = false;
-	return true;
+	return isrunning;
 }
 
 void HTP::render::glApp::Draw()

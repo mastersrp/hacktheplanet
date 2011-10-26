@@ -54,13 +54,14 @@ int main( int argc, char *argv[] )
 	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	HTP::lua::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
-	std::cout << "[i] Loading took '" << timer_loadtime.get_duration() << "' seconds." << std::endl;
+	std::cout << "[i] Loading took " << timer_loadtime.get_duration() << "." << std::endl;
 	
 	HTP::render::glApp glApp;
-	glApp.init();
+	if( glApp.init() == false ) {
+		return 1;
+	}
 	while( glApp.Running() )
 	{
-		std::cout << "Running." << std::endl;
 	}
 	
 	// Init scriptHook
@@ -71,6 +72,6 @@ int main( int argc, char *argv[] )
     scriptHook.onExit(scriptEngine);
 	// Ending lua scriptEngine
     HTP::lua::endState(scriptEngine);
-	std::cout << "[i] Ran for " << timer_runtime.get_duration() << " seconds." << std::endl;
+	std::cout << "[i] Ran for " << timer_runtime.get_duration() << "." << std::endl;
     return 0;
 }

@@ -4,7 +4,7 @@
 #include <config.hpp>
 // OpenGL
 #include <GL/gl.h>
-#include <GL/glut.h>
+#include <GL/glfw.h>
 
 namespace HTP {
 	namespace render {
@@ -15,7 +15,7 @@ namespace HTP {
 			public:
 				glApp();
 
-				void init();
+				bool init();
 				bool Running();
 				void Draw();
 		};
