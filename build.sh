@@ -8,16 +8,16 @@ function clean {
 		rm -Rvf "$FILE";
 	done
 }
-if [[ "$1" == "clean" ]]; then
+if [ "$1" == "clean" -o "$1" == "-c" ]; then
 	clean;
 	exit 0;
-elif [[ "$1" == "rebuild" ]]; then
+elif [ "$1" == "rebuild" -o "$1" == "-R" ]; then
 	clean;
 fi
 printf "=== BUILDING ===\n";
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
-if [[ -e "Makefile" ]]; then
+if [ -e "Makefile" ]; then
 	make;
 	err=$?
 else
@@ -25,8 +25,13 @@ else
 	make;
 	err=$?
 fi
-if [[ "$err" == "0" ]]; then
+if [ "$err" == "0" ]; then
 	printf "=== DONE === \n";
+	if [ "$2" == "-run" -o "$1" == "-r" -o "$1" == "-cr" -o "$1" == "-Rr" ]; then
+		cd bin;
+		./HackThePlanet;
+		exit $?
+	fi
 	exit 0;
 else
 	exit 1;
