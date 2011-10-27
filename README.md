@@ -16,17 +16,17 @@ The project is first, and foremost, an attempt to promote education and learning
 ---------------
 * Windows
 * Linux
-
-*Windows*
-To build the application in Windows, you will need the following tools.
-[CMake][]
-[Visual Studio 2010][] or [MinGW][]
-
-*Linux*
-To build the application in Linux, you will need the following tools
-[gcc][]
-[CMake][]
-
+  
+*Windows*  
+To build the application in Windows, you will need the following tools.  
+[CMake][]  
+[Visual Studio 2010][] or [MinGW][]  
+  
+*Linux*  
+To build the application in Linux, you will need the following tools  
+[gcc][]  
+[CMake][]  
+  
 Both should be available in your package manager, or already installed.
 Run ./build.sh to build the files.
 Then run HackThePlanet in the bin directory.
