@@ -7,12 +7,12 @@ Hack The Planet
 3. [License][1]
 [1]: https://github.com/mastersrp/hacktheplanet/blob/master/COPYING.txt "COPYING.txt"
 
-1. Introduction
+1- Introduction
 ---------------
 The HackThePlanet project is NOT distributed in binary form, and therefore you must follow the instructions in section 2 in order to run the application.
 The project is first, and foremost, an attempt to promote education and learning. Hence the entire application in it's source code form is released under the license mentioned here: [License][1].
 
-2. Instructions
+2- Instructions
 ---------------
 * Windows
 * Linux
