@@ -12,6 +12,7 @@ namespace HTP {
 		{
 			private:
 				bool isrunning,ispaused;
+				int sizeX,sizeY;
 			public:
 				glApp();
 

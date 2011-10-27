@@ -15,6 +15,9 @@
 #include <boost/chrono.hpp>
 // LUA
 #include <lua.hpp>
+// OpenGL
+#include <GL/gl.h>
+#include <GL/glfw.h>
 // CUSTOM
 #include <htp/lua.hpp>
 #include <htp/input.hpp>
@@ -23,10 +26,7 @@
 
 int main( int argc, char *argv[] )
 {
-	HTP::util::Timer timer_runtime;
 	HTP::util::Timer timer_loadtime;
-
-	timer_runtime.start();
 
 	// Lua initialization
     std::cout << "[*I Initializing lua" << std::endl;
@@ -60,18 +60,24 @@ int main( int argc, char *argv[] )
 	if( glApp.init() == false ) {
 		return 1;
 	}
-	while( glApp.Running() )
+	timer_loadtime.start();
+	scriptHook.onInit( scriptEngine );
+	std::cout << "[i] Init took " << timer_loadtime.get_duration() << "." << std::endl;
+	HTP::lua::dofunction( scriptEngine, "init" );
+	glfwSetWindowTitle( "Engine | HackThePlanet" );
+	int running = GL_TRUE;
+	std::cout << "[i] Running main rendering/interactive loop." << std::endl;
+	while( running )
 	{
+		glClear( GL_COLOR_BUFFER_BIT );
+		glfwSwapBuffers();
+		running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
+
 	}
-	
-	// Init scriptHook
-	scriptHook.onInit(scriptEngine);
-	// lua gameplay loop
-	HTP::lua::dofunction(scriptEngine, "mainloop" );
+	glfwTerminate();
 	// Ending scriptHook
-    scriptHook.onExit(scriptEngine);
+    scriptHook.onExit( scriptEngine );
 	// Ending lua scriptEngine
     HTP::lua::endState(scriptEngine);
-	std::cout << "[i] Ran for " << timer_runtime.get_duration() << "." << std::endl;
     return 0;
 }
