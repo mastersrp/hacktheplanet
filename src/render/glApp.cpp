@@ -28,6 +28,7 @@ bool HTP::render::glApp::init()
 		return false;
 	}
 	isrunning = true;
+	return true;
 }
 
 bool HTP::render::glApp::Running()
@@ -42,4 +43,5 @@ bool HTP::render::glApp::Running()
 
 void HTP::render::glApp::Draw()
 {
+	glfwSwapBuffers();
 }

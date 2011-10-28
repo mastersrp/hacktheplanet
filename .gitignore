@@ -12,4 +12,4 @@ Makefile
 install_manifest.txt
 # Other
 bin/HackThePlanet
-lib/
+lib/gwen/

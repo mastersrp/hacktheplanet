@@ -1,7 +1,7 @@
 cmake_minimum_required( VERSION 2.8 )
 SET( EXECUTABLE_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/bin/" )
 SET( LIBRARY_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/lib/" )
-include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/include" )
+include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/include" "${LIBRARY_OUTPUT_PATH}/gwen/trunk/gwen/include" )
 add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/src/input" )
 add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/src/lua" )
 add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/src/render" )

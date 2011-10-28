@@ -18,6 +18,16 @@
 // OpenGL
 #include <GL/gl.h>
 #include <GL/glfw.h>
+
+#ifdef HTP_USE_GWEN
+// GWEN
+#	include <Gwen/Gwen.h>
+#	include <Gwen/Skins/Simple.h>
+#	include <Gwen/Skins/TexturedBase.h>
+#	include <Gwen/UnitTest/UnitTest.h>
+#	include <Gwen/Renderers/OpenGL_DebugFont.h>
+#endif
+
 // CUSTOM
 #include <htp/lua.hpp>
 #include <htp/input.hpp>
@@ -65,13 +75,33 @@ int main( int argc, char *argv[] )
 	std::cout << "[i] Init took " << timer_loadtime.get_duration() << "." << std::endl;
 	HTP::lua::dofunction( scriptEngine, "init" );
 	glfwSetWindowTitle( "Engine | HackThePlanet" );
+
+	#ifdef HTP_USE_GWEN
+	// Setting up Gwen
+	
+	Gwen::Renderer::OpenGL *pRenderer = new Gwen::Renderer::OpenGL_DebugFont();
+	Gwen::Skin::TexturedBase skin;
+	skin.SetRender( pRenderer );
+	skin.Init( "data/DefaultSkin.png" );
+	Gwen::Controls::Canvas *pCanvas = new Gwen::Controls::Canvas( &skin );
+	pCanvas->SetSize( 640,480 );
+	pCanvas->SetDrawBackground( true );
+	pCanvas->SetBackgroundColor( Gwen::Color( 150, 170, 170, 255 ) );
+
+	UnitTest *pUnit = new UnitTest( pCanvas );
+	pUnit->SetPos( 10, 10 );
+	#endif /* HTP_USE_GWEN */
+
 	int running = GL_TRUE;
 	std::cout << "[i] Running main rendering/interactive loop." << std::endl;
 	while( running )
 	{
-		glClear( GL_COLOR_BUFFER_BIT );
-		glfwSwapBuffers();
 		running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
+		glClear( GL_COLOR_BUFFER_BIT );
+		#ifdef HTP_USE_GWEN
+		pCanvas->RenderCanvas();
+		#endif
+		glApp.Draw();
 
 	}
 	glfwTerminate();

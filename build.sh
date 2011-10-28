@@ -14,6 +14,13 @@ if [ "$1" == "clean" -o "$1" == "-c" ]; then
 elif [ "$1" == "rebuild" -o "$1" == "-R" ]; then
 	clean;
 fi
+cd lib;
+if [ -e "gwen" ]; then
+	cd ..;
+else
+	./extras.sh;
+	cd ..;
+fi;
 printf "=== BUILDING ===\n";
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
