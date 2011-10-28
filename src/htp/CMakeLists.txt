@@ -2,6 +2,7 @@ cmake_minimum_required( VERSION 2.8 )
 
 project( HackThePlanet )
 	file( GLOB_RECURSE HackThePlanet_SRCS *.cpp )
+	include_directories( "${LIBRARY_OUTPUT_PATH}/gwen/trunk/gwen/include" )
 	link_directories( "${LIBRARY_OUTPUT_PATH}" )
 	add_executable( HackThePlanet ${HackThePlanet_SRCS} )
 	target_link_libraries( HackThePlanet rt boost_random boost_filesystem
