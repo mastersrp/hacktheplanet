@@ -1,10 +1,17 @@
 cmake_minimum_required( VERSION 2.8 )
-
 project( HackThePlanet )
 	file( GLOB_RECURSE HackThePlanet_SRCS *.cpp )
-	include_directories( "${LIBRARY_OUTPUT_PATH}/gwen/trunk/gwen/include" )
+	set( CMAKE_CXX_FLAGS "-std=c++0x" )
+	set( CURSES_NEED_NCURSES true )
+	find_package(Curses)
+	if( NOT CURSES_FOUND )
+		message( FATAL_ERROR "Could not find ncurses-like library!" )
+	endif( NOT CURSES_FOUND )
+	find_package(Lua51)
+	if(NOT LUA51_FOUND )
+		message( FATAL_ERROR "Could not find lua!" )
+	endif( NOT LUA51_FOUND )
+	include_directories( "${CURSES_INCLUDE_DIR}" "${LUA_INCLUDE_DIR}" "${LIBRARY_OUTPUT_PATH}/gwen/trunk/gwen/include" )
 	link_directories( "${LIBRARY_OUTPUT_PATH}" )
 	add_executable( HackThePlanet ${HackThePlanet_SRCS} )
-	target_link_libraries( HackThePlanet rt boost_random boost_filesystem
-		boost_iostreams boost_date_time boost_chrono GL glfw freeimage
-		GWEN-Renderer-OpenGL_DebugFont gwen_static unittest dl lua htp_input htp_lua htp_render )
+	target_link_libraries( HackThePlanet rt boost_random boost_filesystem boost_iostreams boost_date_time boost_chrono dl ${CURSES_LIBRARIES} ${LUA_LIBRARIES} htp_input htp_lua htp_render )

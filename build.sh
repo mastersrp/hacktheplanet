@@ -19,16 +19,16 @@ cd lib;
 if [ -e "gwen" ]; then
 	cd ..;
 else
-	RET=$(bash ./extras.sh);
-	printf "$RET\n";
-	if [ "$RET" == "1" ]; then
-		exit 1;
-	fi
+#	RET=$(bash ./extras.sh);
+#	printf "$RET\n";
+#	if [ "$RET" == "1" ]; then
+#		exit 1;
+#	fi
 	cd ..;
 fi;
 printf "=== BUILDING ===\n";
-export CC=/usr/bin/clang
-export CXX=/usr/bin/clang++
+#export CC=/usr/bin/clang
+#export CXX=/usr/bin/clang++
 if [ -e "Makefile" ]; then
 	make;
 	err=$?

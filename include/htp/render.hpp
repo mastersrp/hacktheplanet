@@ -6,5 +6,6 @@
 #elif defined HTP_USE_GL
 #	include <htp/render/glApp.hpp>
 #endif
+#include <htp/render/App.hpp>
 
 #endif /* HTP_RENDER_HPP */

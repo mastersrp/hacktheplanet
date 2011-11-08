@@ -1,10 +1,7 @@
-#ifndef HTP_RENDER_GLAPP
-#define HTP_RENDER_GLAPP
+#ifndef HTP_RENDER_GLAPP_HPP
+#define HTP_RENDER_GLAPP_HPP
 
 #include <config.hpp>
-// OpenGL
-#include <GL/gl.h>
-#include <GL/glfw.h>
 
 namespace HTP {
 	namespace render {
@@ -23,4 +20,4 @@ namespace HTP {
 	}
 }
 
-#endif /* HTP_RENDER_GLAPP */
+#endif /* HTP_RENDER_GLAPP_HPP */
