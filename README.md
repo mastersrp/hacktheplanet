@@ -14,8 +14,15 @@ The project is first, and foremost, an attempt to promote education and learning
 
 2- Instructions
 ---------------
+* Global requirements
 * Windows
 * Linux
+
+*Global requirements*
+To build the application in any environment, you'll need the following software installed.  
+You'll also need to make sure that it's accessible in the include and linker directories.
+[lua][]
+[boost][]
   
 *Windows*  
 To build the application in Windows, you will need the following tools.  
@@ -35,3 +42,5 @@ Then run HackThePlanet in the bin directory.
 [gcc]: gcc.gnu.org "GCC"
 [Visual Studio 2010]: www.microsoft.com/visualstudio/ "Visual Studio 2010"
 [MinGW]: www.mingw.org "MinGW"
+[lua]: www.lua.org "Lua"
+[boost]: www.boost.org "Boost"

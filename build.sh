@@ -19,7 +19,11 @@ cd lib;
 if [ -e "gwen" ]; then
 	cd ..;
 else
-	./extras.sh;
+	RET=$(bash ./extras.sh);
+	printf "$RET\n";
+	if [ "$RET" == "1" ]; then
+		exit 1;
+	fi
 	cd ..;
 fi;
 printf "=== BUILDING ===\n";
