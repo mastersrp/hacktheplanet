@@ -7,11 +7,12 @@ function clean {
 	for FILE in $(find . -iname 'Makefile' -or -iname 'CMakeCache.txt' -or -iname 'CMakeFiles' -or -iname 'cmake_install.cmake'); do
 		rm -Rvf "$FILE";
 	done
+	rm -Rvf lib/gwen;
 }
-if [ "$1" == "clean" -o "$1" == "-c" ]; then
+if [ "$1" == "clean" -o "$1" == "-c" -o "$1" == "-cr" ]; then
 	clean;
 	exit 0;
-elif [ "$1" == "rebuild" -o "$1" == "-R" ]; then
+elif [ "$1" == "rebuild" -o "$1" == "-R" -o "$1" == "-Rr" ]; then
 	clean;
 fi
 cd lib;
