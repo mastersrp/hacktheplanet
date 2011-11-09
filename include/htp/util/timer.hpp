@@ -1,13 +1,27 @@
+#ifndef HTP_UTIL_TIMER_HPP
+#define HTP_UTIL_TIMER_HPP
+
+#include <config.hpp>
+#ifdef USE_BOOST_CHRONO
+#include <boost/chrono.hpp>
+#else
 #include <chrono>
+#endif
 
 namespace HTP {
 	namespace util {
 		class Timer 
 		{
 			private:
-				std::chrono::time_point<std::chrono::system_clock> timer_start;
+				#ifdef USE_BOOST_CHRONO
+				boost::chrono::system_clock::time_point timer_start;
+				boost::chrono::system_clock::time_point timer_paused;
+				boost::chrono::duration<float> timer_pausedTicks;
+				#else
+				std::chrono::system_clock::time_point timer_start;
 				std::chrono::system_clock::time_point timer_paused;
 				std::chrono::duration<float> timer_pausedTicks;
+				#endif
 				bool paused,started,stopped;
 			public:
 				Timer();
@@ -15,7 +29,11 @@ namespace HTP {
 				void start();
 				void pause();
 				void unpause();
+				#ifdef USE_BOOST_CHRONO
+				boost::chrono::duration<float> get_duration();
+				#else
 				std::chrono::duration<float> get_duration();
+				#endif
 		};
 	}
 }
@@ -32,7 +50,11 @@ void HTP::util::Timer::start()
 	started = true;
 	paused = false;
 	stopped = false;
+	#ifdef USE_BOOST_CHRONO
+	timer_start = boost::chrono::system_clock::now();
+	#else
 	timer_start = std::chrono::system_clock::now();
+	#endif
 
 }
 
@@ -41,7 +63,11 @@ void HTP::util::Timer::pause()
 	if ( started == true && paused == false )
 	{
 		paused = true;
+		#ifdef USE_BOOST_CHRONO
+		timer_paused = boost::chrono::system_clock::now();
+		#else
 		timer_paused = std::chrono::system_clock::now();
+		#endif
 	}
 }
 
@@ -50,11 +76,23 @@ void HTP::util::Timer::unpause()
 	if( started == true && paused == true )
 	{
 		paused = false;
+		#ifdef USE_BOOST_CHRONO
+		timer_pausedTicks = boost::chrono::system_clock::now() - timer_paused;
+		#else
 		timer_pausedTicks = std::chrono::system_clock::now() - timer_paused;
+		#endif
 	}
 }
-
+#ifdef USE_BOOST_CHRONO
+boost::chrono::duration<float> HTP::util::Timer::get_duration()
+{
+	return boost::chrono::system_clock::now() - timer_start;
+}
+#else
 std::chrono::duration<float> HTP::util::Timer::get_duration()
 {
 	return std::chrono::system_clock::now() - timer_start;
 }
+#endif
+
+#endif /* HTP_UTIL_TIMER_HPP */

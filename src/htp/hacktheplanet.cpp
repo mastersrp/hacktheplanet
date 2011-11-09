@@ -50,9 +50,7 @@ int main( int argc, char *argv[] )
     std::cout << "Done!" << std::endl;
     boost::property_tree::read_json( "data/settings.json", settings );
 	std::string profile = settings.get<std::string>("profile", "default");
-    std::cout << "Using '" << profile << "' profile." << std::endl;
-    std::string profile_skin = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".skin", "data/DefaultSkin.png" );
-    std::cout << "skin:  " << profile_skin << std::endl;
+    std::cout << "[i] Using '" << profile << "' profile." << std::endl;
 	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	HTP::lua::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
@@ -70,13 +68,13 @@ int main( int argc, char *argv[] )
 	std::cout << "[i] Running main rendering/interactive loop." << std::endl;
 	bool running = App.running();
 	initscr();
-	while( running )
-	{
+//	while( running )
+//	{
 		printw( "Hello world!" );
 		refresh();
 		App.ProcessInput();
 		running = App.running();
-	}
+//	}
 	endwin();
 	// Ending scriptHook
 	scriptHook.onExit( scriptEngine );
