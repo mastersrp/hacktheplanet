@@ -5,7 +5,6 @@ Hack The Planet
 	* Windows
 	* Linux
 3. [License][1]
-4. Notes
 [1]: https://github.com/mastersrp/hacktheplanet/blob/master/COPYING.txt "COPYING.txt"
 
 1- Introduction
@@ -45,7 +44,3 @@ Then run HackThePlanet in the bin directory.
 [MinGW]: www.mingw.org "MinGW"
 [lua]: www.lua.org "Lua"
 [boost]: www.boost.org "Boost"
-
-4- Notes
---------
-This project is currently discontinued due to my up-and-coming death.
