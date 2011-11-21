@@ -2,7 +2,7 @@
 #define HTP_UTIL_TIMER_HPP
 
 #include <config.hpp>
-#ifdef USE_BOOST_CHRONO
+#ifdef USE_BOOST
 #include <boost/chrono.hpp>
 #else
 #include <chrono>
@@ -13,7 +13,7 @@ namespace HTP {
 		class Timer 
 		{
 			private:
-				#ifdef USE_BOOST_CHRONO
+				#ifdef USE_BOOST
 				boost::chrono::system_clock::time_point timer_start;
 				boost::chrono::system_clock::time_point timer_paused;
 				boost::chrono::duration<float> timer_pausedTicks;
@@ -29,7 +29,7 @@ namespace HTP {
 				void start();
 				void pause();
 				void unpause();
-				#ifdef USE_BOOST_CHRONO
+				#ifdef USE_BOOST
 				boost::chrono::duration<float> get_duration();
 				#else
 				std::chrono::duration<float> get_duration();

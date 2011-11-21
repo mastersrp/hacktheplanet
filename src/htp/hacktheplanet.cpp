@@ -12,7 +12,9 @@
 #include <boost/foreach.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#ifdef USE_BOOST
 #include <boost/chrono.hpp>
+#endif
 // LUA
 #include <lua.hpp>
 // Graphical/Visual

@@ -7,8 +7,6 @@
 #include <config.hpp>
 // STD LIBS
 #include <iostream>
-// BOOST C++
-#include <boost/filesystem.hpp>
 // LUA
 #include <lua.hpp>
 
