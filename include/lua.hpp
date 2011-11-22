@@ -1,19 +1,15 @@
-#ifndef LUA_HPP
-#define LUA_HPP
-
+/*
+ * This file is part of the HackThePlanet project.
+ * License is in COPYING file.
+ */
+#ifndef HTP_LUA_HPP
+#define HTP_LUA_HPP
 #include <config.hpp>
-#ifdef OS_UBUNTU
-extern "C" {
-	#include <lua5.1/lua.h>
-	#include <lua5.1/lualib.h>
-	#include <lua5.1/lauxlib.h>
-}
-#else
-extern "C" {
-	#include <lua.h>
-	#include <lualib.h>
-	#include <lauxlib.h>
-}
-#endif
 
-#endif /* LUA_HPP */
+#include <htp/lua/state.hpp>
+#include <htp/lua/errorhandling.hpp>
+#include <htp/lua/dofunction.hpp>
+#include <htp/lua/hook.hpp>
+#include <htp/lua/functions/include.hpp>
+
+#endif /* HTP_LUA_HPP */

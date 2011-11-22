@@ -18,9 +18,9 @@ namespace HTP {
 				boost::chrono::system_clock::time_point timer_paused;
 				boost::chrono::duration<float> timer_pausedTicks;
 				#else
-				std::chrono::system_clock::time_point timer_start;
-				std::chrono::system_clock::time_point timer_paused;
-				std::chrono::duration<float> timer_pausedTicks;
+				std::chrono::high_resolution_clock::time_point timer_start;
+				std::chrono::high_resolution_clock::time_point timer_paused;
+				std::chrono::high_resolution_clock::duration<float> timer_pausedTicks;
 				#endif
 				bool paused,started,stopped;
 			public:
@@ -32,7 +32,7 @@ namespace HTP {
 				#ifdef USE_BOOST
 				boost::chrono::duration<float> get_duration();
 				#else
-				std::chrono::duration<float> get_duration();
+				std::chrono::milliseconds get_duration();
 				#endif
 		};
 	}
@@ -53,7 +53,7 @@ void HTP::util::Timer::start()
 	#ifdef USE_BOOST
 	timer_start = boost::chrono::system_clock::now();
 	#else
-	timer_start = std::chrono::system_clock::now();
+	timer_start = std::chrono::high_resolution_clock::now();
 	#endif
 
 }
@@ -66,7 +66,7 @@ void HTP::util::Timer::pause()
 		#ifdef USE_BOOST
 		timer_paused = boost::chrono::system_clock::now();
 		#else
-		timer_paused = std::chrono::system_clock::now();
+		timer_paused = std::chrono::high_resolution_clock::now();
 		#endif
 	}
 }
@@ -79,19 +79,19 @@ void HTP::util::Timer::unpause()
 		#ifdef USE_BOOST
 		timer_pausedTicks = boost::chrono::system_clock::now() - timer_paused;
 		#else
-		timer_pausedTicks = std::chrono::system_clock::now() - timer_paused;
+		timer_pausedTicks = std::chrono::high_resolution_clock::now() - timer_paused;
 		#endif
 	}
 }
 #ifdef USE_BOOST
 boost::chrono::duration<float> HTP::util::Timer::get_duration()
 {
-	return boost::chrono::system_clock::now() - timer_start;
+	return boost::chrono::high_resolution_clock::now() - timer_start;
 }
 #else
-std::chrono::duration_cast<std::chrono::milliseconds> HTP::util::Timer::get_duration()
+std::chrono::milliseconds HTP::util::Timer::get_duration()
 {
-	return std::chrono::duration_cast< std::chrono::milliseconds >(std::chrono::system_clock::now() - timer_start).count();
+	return std::chrono::duration_cast< std::chrono::milliseconds >(std::chrono::high_resolution_clock::now() - timer_start).count();
 }
 #endif
 

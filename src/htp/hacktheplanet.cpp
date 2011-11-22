@@ -20,6 +20,9 @@
 // Graphical/Visual
 #if defined HTP_USE_NCURSES
 #include <ncurses.h>
+#else
+#include <GL/gl.h>
+#include <GL/glfw.h>
 #endif
 
 // CUSTOM
