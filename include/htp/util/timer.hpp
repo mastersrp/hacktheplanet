@@ -50,7 +50,7 @@ void HTP::util::Timer::start()
 	started = true;
 	paused = false;
 	stopped = false;
-	#ifdef USE_BOOST_CHRONO
+	#ifdef USE_BOOST
 	timer_start = boost::chrono::system_clock::now();
 	#else
 	timer_start = std::chrono::system_clock::now();
@@ -63,7 +63,7 @@ void HTP::util::Timer::pause()
 	if ( started == true && paused == false )
 	{
 		paused = true;
-		#ifdef USE_BOOST_CHRONO
+		#ifdef USE_BOOST
 		timer_paused = boost::chrono::system_clock::now();
 		#else
 		timer_paused = std::chrono::system_clock::now();
@@ -76,22 +76,22 @@ void HTP::util::Timer::unpause()
 	if( started == true && paused == true )
 	{
 		paused = false;
-		#ifdef USE_BOOST_CHRONO
+		#ifdef USE_BOOST
 		timer_pausedTicks = boost::chrono::system_clock::now() - timer_paused;
 		#else
 		timer_pausedTicks = std::chrono::system_clock::now() - timer_paused;
 		#endif
 	}
 }
-#ifdef USE_BOOST_CHRONO
+#ifdef USE_BOOST
 boost::chrono::duration<float> HTP::util::Timer::get_duration()
 {
 	return boost::chrono::system_clock::now() - timer_start;
 }
 #else
-std::chrono::duration<float> HTP::util::Timer::get_duration()
+std::chrono::duration_cast<std::chrono::milliseconds> HTP::util::Timer::get_duration()
 {
-	return std::chrono::system_clock::now() - timer_start;
+	return std::chrono::duration_cast< std::chrono::milliseconds >(std::chrono::system_clock::now() - timer_start).count();
 }
 #endif
 

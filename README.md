@@ -21,8 +21,8 @@ The project is first, and foremost, an attempt to promote education and learning
 *Global requirements*  
 To build the application in any environment, you'll need the following software installed.  
 You'll also need to make sure that it's accessible in the include and linker directories.
-[lua][]
-[boost][]
+[lua][]  
+[boost][]  
   
 *Windows*  
 To build the application in Windows, you will need the following tools.  
