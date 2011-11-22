@@ -21,18 +21,18 @@ The project is first, and foremost, an attempt to promote education and learning
 *Global requirements*  
 To build the application in any environment, you'll need the following software installed.  
 You'll also need to make sure that it's accessible in the include and linker directories.  
-[lua][]  
-[boost][]  
+[lua][]  (v 5.1)  
+[boost][]  (v 1.47.0)  
   
 *Windows*  
 To build the application in Windows, you will need the following tools.  
-[CMake][]  
+[CMake][]  (v 2.8)  
 [Visual Studio 2010][] or [MinGW][]  
   
 *Linux*  
 To build the application in Linux, you will need the following tools  
-[gcc][]  
-[CMake][]  
+[gcc][]  (v 4.5 or better)  
+[CMake][]  (v 2.8)  
   
 Both should be available in your package manager, or already installed.
 Run ./build.sh to build the files.
