@@ -4,7 +4,7 @@ Hack The Planet
 2. Instructions
 	* Windows
 	* Linux
-3. [License][Copying.txt]
+3. [License](Copying.txt)
 
 1- Introduction
 ---------------
