@@ -4,8 +4,7 @@ Hack The Planet
 2. Instructions
 	* Windows
 	* Linux
-3. [License][1]
-[1]: https://github.com/mastersrp/hacktheplanet/blob/master/COPYING.txt "COPYING.txt"
+3. [License][Copying.txt]
 
 1- Introduction
 ---------------
