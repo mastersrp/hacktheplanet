@@ -26,7 +26,7 @@
 #endif
 
 // CUSTOM
-#include <htp/lua.hpp>
+#include <script.hpp>
 #include <htp/input.hpp>
 #include <htp/render.hpp>
 #include <htp/util/timer.hpp>
@@ -38,9 +38,9 @@ int main( int argc, char *argv[] )
 	// Lua initialization
     std::cout << "[*I Initializing lua" << std::endl;
 	timer_loadtime.start();
-	lua_State *scriptEngine = HTP::lua::createState();
+	lua_State *scriptEngine = script::createState();
 	// Lua scriptHook creation
-    HTP::lua::hook scriptHook;
+    script::hook scriptHook;
 	// Settings parsing
     std::cout << "[*] Loading settings...";
     boost::property_tree::ptree settings;
@@ -49,7 +49,7 @@ int main( int argc, char *argv[] )
     if( !settings_file ) {
 		std::cerr << "Couldn't open 'settings.json'!" << std::endl;
 		scriptHook.onExit(scriptEngine);
-		HTP::lua::endState(scriptEngine);
+		script::endState(scriptEngine);
 		return 1;
     }
     std::cout << "Done!" << std::endl;
@@ -58,7 +58,7 @@ int main( int argc, char *argv[] )
     std::cout << "[i] Using '" << profile << "' profile." << std::endl;
 	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
 	std::cout << "[*] Loading lua framework..." << std::endl;
-	HTP::lua::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
+	script::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration() << "." << std::endl;
 	
 	HTP::render::App App;
@@ -68,7 +68,7 @@ int main( int argc, char *argv[] )
 	timer_loadtime.start();
 	scriptHook.onInit( scriptEngine );
 	std::cout << "[i] Init took " << timer_loadtime.get_duration() << "." << std::endl;
-	HTP::lua::dofunction( scriptEngine, "init" );
+	script::dofunction( scriptEngine, "init" );
 
 	std::cout << "[i] Running main rendering/interactive loop." << std::endl;
 	bool running = App.running();
@@ -84,6 +84,6 @@ int main( int argc, char *argv[] )
 	// Ending scriptHook
 	scriptHook.onExit( scriptEngine );
 	// Ending lua scriptEngine
-	HTP::lua::endState(scriptEngine);
+	script::endState(scriptEngine);
     return 0;
 }

@@ -20,7 +20,7 @@ namespace HTP {
 				#else
 				std::chrono::high_resolution_clock::time_point timer_start;
 				std::chrono::high_resolution_clock::time_point timer_paused;
-				std::chrono::high_resolution_clock::duration<float> timer_pausedTicks;
+				std::chrono::high_resolution_clock::duration timer_pausedTicks;
 				#endif
 				bool paused,started,stopped;
 			public:
@@ -32,7 +32,7 @@ namespace HTP {
 				#ifdef USE_BOOST
 				boost::chrono::duration<float> get_duration();
 				#else
-				std::chrono::milliseconds get_duration();
+				std::chrono::high_resolution_clock::duration get_duration();
 				#endif
 		};
 	}
@@ -89,9 +89,9 @@ boost::chrono::duration<float> HTP::util::Timer::get_duration()
 	return boost::chrono::high_resolution_clock::now() - timer_start;
 }
 #else
-std::chrono::milliseconds HTP::util::Timer::get_duration()
+std::chrono::high_resolution_clock::duration HTP::util::Timer::get_duration()
 {
-	return std::chrono::duration_cast< std::chrono::milliseconds >(std::chrono::high_resolution_clock::now() - timer_start).count();
+	return std::chrono::high_resolution_clock::now() - timer_start;
 }
 #endif
 

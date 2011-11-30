@@ -4,8 +4,11 @@ function clean {
 	for MAKES in $(find . -iname 'Makefile'); do
 		make -f "$MAKES" clean;
 	done
-	for FILE in $(find . -iname 'Makefile' -or -iname 'CMakeCache.txt' -or -iname 'CMakeFiles' -or -iname 'cmake_install.cmake'); do
+	for FILE in $(find . -iname 'Makefile' -or -iname 'CMakeCache.txt' -or -iname 'cmake_install.cmake'); do
 		rm -Rvf "$FILE";
+	done
+	for DIR in $(find . -type d -iname 'CMakeFiles'); do
+		rm -Rvf "$DIR";
 	done
 	rm -Rvf lib/gwen;
 }
