@@ -22,7 +22,7 @@
 #include <ncurses.h>
 #else
 #include <GL/gl.h>
-#include <GL/glfw.h>
+#include <GL/glut.h>
 #endif
 
 // CUSTOM
@@ -39,6 +39,8 @@ int main( int argc, char *argv[] )
     std::cout << "[*I Initializing lua" << std::endl;
 	timer_loadtime.start();
 	lua_State *scriptEngine = script::createState();
+	lua_pushstring( scriptEngine, "data/lua/includes" );
+	lua_setglobal( scriptEngine, "globalincludes" );
 	// Lua scriptHook creation
     script::hook scriptHook;
 	// Settings parsing
