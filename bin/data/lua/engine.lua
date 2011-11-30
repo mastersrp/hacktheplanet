@@ -3,6 +3,13 @@
 -- hooks
 -- functions
 -- global variables
+--
+-- Below is a list of the engine-created compiled-in variables, and their content.
+-- Their content, can NOT be changed.
+--
+-- global variables {{
+--  globalinclude	'data/lua/include'
+-- }}
 
 -- Includes:
 include( globalinclude.."/profilecreator.lua" )
