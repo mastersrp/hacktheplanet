@@ -1,8 +1,10 @@
 {
-	"profile":"default",
-	"profiles":{
-		"default":{
-			"skin":"data/DefaultSkin.png"
-		}
+    "profile":"default"
+    "profiles":{
+    	"default":{
+	    "skin":"data/DefaultSkin.png",
+	    "engine":"data/lua/engine.lua",
+	    "include":"data/lua/include"
 	}
+    }
 }
