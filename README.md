@@ -21,7 +21,7 @@ The project is first, and foremost, an attempt to promote education and learning
 To build the application in any environment, you'll need the following software installed.  
 You'll also need to make sure that it's accessible in the include and linker directories.  
 [lua][]  (v 5.1)  
-[boost][]  (v 1.47.0)  
+[boost][]  (v 1.46.0 or newer)  
   
 *Windows*  
 To build the application in Windows, you will need the following tools.  
