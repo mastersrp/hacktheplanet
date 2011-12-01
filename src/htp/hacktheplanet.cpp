@@ -34,8 +34,6 @@ int main( int argc, char *argv[] )
     std::cout << "[*I Initializing lua" << std::endl;
     timer_loadtime.start();
     lua_State *scriptEngine = script::createState();
-    lua_pushstring( scriptEngine, "data/lua/includes" );
-    lua_setglobal( scriptEngine, "globalincludes" );
     // Lua scriptHook creation
     script::hook scriptHook;
     // Settings parsing
@@ -54,6 +52,9 @@ int main( int argc, char *argv[] )
     std::string profile = settings.get<std::string>("profile", "default");
     std::cout << "[i] Using '" << profile << "' profile." << std::endl;
     std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
+    // Quick fix for the globalincludes variable.
+    lua_pushstring( scriptEngine, settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".include", "data/lua/include").c_str() );
+    lua_setglobal( scriptEngine, "globalincludes" );
     std::cout << "[*] Loading lua framework..." << std::endl;
     script::report_errors( scriptEngine, luaL_dofile(scriptEngine, enginelua.c_str()) );
     std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;

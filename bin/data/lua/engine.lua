@@ -12,9 +12,9 @@
 -- }}
 
 -- Includes:
-include( globalinclude.."/profilecreator.lua" )
-include( globalinclude.."/json.lua" )
-include( globalinclude.."/hook.lua" )
+include( globalincludes.."/profilecreator.lua" )
+include( globalincludes.."/json.lua" )
+include( globalincludes.."/hook.lua" )
 
 function mainloop()
 --	stdin = io.input( io.stdin, "r" )
