@@ -8,7 +8,7 @@
 
 HTP::render::glApp::glApp()
 {
-	isrunning = false;
+	running = false;
 	ispaused = false;
 	sizeX = 640;
 	sizeY = 480;
@@ -32,14 +32,14 @@ bool HTP::render::glApp::init()
 	return true;
 }
 
-bool HTP::render::glApp::Running()
+bool HTP::render::glApp::isRunning()
 {
-	if( isrunning == true && ispaused == false )
+	if( running == true && ispaused == false )
 	{
 		glfwSetWindowSize( sizeX, sizeY );
 		return isrunning;
 	}
-	return isrunning;
+	return running;
 }
 
 void HTP::render::glApp::Draw()

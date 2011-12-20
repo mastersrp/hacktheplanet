@@ -8,13 +8,13 @@ namespace HTP {
 		class glApp
 		{
 			private:
-				bool isrunning,ispaused;
+				bool running,ispaused;
 				int sizeX,sizeY;
 			public:
 				glApp();
 
 				bool init();
-				bool Running();
+				bool isRunning();
 				void Draw();
 		};
 	}

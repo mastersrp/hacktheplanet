@@ -21,6 +21,6 @@ project( HackThePlanet )
 	link_directories( "${LIBRARY_OUTPUT_PATH}" )
 	add_executable( HackThePlanet ${HackThePlanet_SRCS} )
 	target_link_libraries( HackThePlanet rt dl ${Boost_LIBRARIES}
-	${CURSES_LIBRARIES} ${LUA_LIBRARIES} htp_input htp_render script )
+	${CURSES_LIBRARIES} ${LUA_LIBRARIES} htp_render script )
 
 add_dependencies( HackThePlanet script )

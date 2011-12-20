@@ -11,9 +11,9 @@ namespace HTP {
 			public:
 				ncApp();
 
-				bool init();
-				bool isRunning();
-				void SetRunning( int inputch );
+				virtual bool init();
+				virtual bool isRunning();
+				virtual void SetRunning( int inputch );
 		};
 	}
 }
