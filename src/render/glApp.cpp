@@ -1,4 +1,5 @@
 #include <config.hpp>
+#ifndef HTP_USE_NCURSES
 #include <iostream>
 
 #include <htp/render/glApp.hpp>
@@ -45,3 +46,5 @@ void HTP::render::glApp::Draw()
 {
 	glfwSwapBuffers();
 }
+
+#endif /* !HTP_USE_NCURSES */

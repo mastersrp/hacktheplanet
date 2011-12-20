@@ -29,7 +29,7 @@
 
 int main( int argc, char *argv[] )
 {
-	HTP::util::Timer timer_loadtime;
+	HTP::util::Timer<std::chrono::nanoseconds> timer_loadtime;
 	// Lua initialization
 	std::cout << "[*I Initializing lua" << std::endl;
 	timer_loadtime.start();
@@ -65,8 +65,12 @@ int main( int argc, char *argv[] )
 	}
 	timer_loadtime.start();
 	scriptHook.onInit( scriptEngine );
-	std::cout << "[i] Init took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
-	script::dofunction( scriptEngine, "init" );
+	int input;
+	while( App.isRunning() )
+	{
+		input = App.ProcessInput();
+		App.SetRunning( input );
+	}
 	// Ending scriptHook
 	scriptHook.onExit( scriptEngine );
 	// Ending lua scriptEngine

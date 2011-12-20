@@ -11,12 +11,12 @@ namespace HTP {
 		#ifdef HTP_USE_GL
 		class App : public glApp {
 			public:
-				void ProcessInput();
+				int ProcessInput();
 		};
 		#elif defined HTP_USE_NCURSES
 		class App : public ncApp {
 			public:
-				void ProcessInput();
+				int ProcessInput();
 		};
 		#endif
 	}

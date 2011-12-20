@@ -4,7 +4,9 @@
 
 HTP::render::ncApp::ncApp()
 {
-	isrunning = true;
+	initscr();
+	refresh();
+	running = true;
 }
 
 bool HTP::render::ncApp::init()
@@ -12,7 +14,17 @@ bool HTP::render::ncApp::init()
 	return true;
 }
 
-bool HTP::render::ncApp::running()
+bool HTP::render::ncApp::isRunning()
 {
-	return isrunning;
+	return running;
+}
+
+void HTP::render::ncApp::SetRunning( int inputch )
+{
+	if( inputch == 1 )
+	{
+		// TODO:
+		// Add proper cleanup code here, or a call to cleanup what's been done.
+		running = false;
+	}
 }

@@ -6,12 +6,13 @@
 
 namespace HTP {
 	namespace util {
+		template <class TIME>
 		class Timer 
         {
 			private:
 				std::chrono::high_resolution_clock::time_point timer_start;
 				std::chrono::high_resolution_clock::time_point timer_paused;
-				std::chrono::nanoseconds timer_pausedTicks;
+				TIME timer_pausedTicks;
 				bool paused,started,stopped;
 			public:
 				Timer();
@@ -19,19 +20,19 @@ namespace HTP {
 				void start();
 				void pause();
 				void unpause();
-				std::chrono::nanoseconds get_duration();
+				TIME get_duration();
 		};
 	}
 }
-
-HTP::util::Timer::Timer()
+template <class TIME>
+HTP::util::Timer<TIME>::Timer()
 {
 	paused = false;
 	started = false;
 	stopped = false;
 }
-
-void HTP::util::Timer::start()
+template <class TIME>
+void HTP::util::Timer<TIME>::start()
 {
 	started = true;
 	paused = false;
@@ -39,7 +40,8 @@ void HTP::util::Timer::start()
 	timer_start = std::chrono::high_resolution_clock::now();
 }
 
-void HTP::util::Timer::pause()
+template <class TIME>
+void HTP::util::Timer<TIME>::pause()
 {
 	if ( started == true && paused == false )
 	{
@@ -47,8 +49,8 @@ void HTP::util::Timer::pause()
 		timer_paused = std::chrono::high_resolution_clock::now();
 	}
 }
-
-void HTP::util::Timer::unpause()
+template<class TIME>
+void HTP::util::Timer<TIME>::unpause()
 {
 	if( started == true && paused == true ) 
 	{
@@ -56,7 +58,8 @@ void HTP::util::Timer::unpause()
 		timer_pausedTicks = std::chrono::high_resolution_clock::now()-timer_paused;
 	}
 }
-std::chrono::nanoseconds HTP::util::Timer::get_duration()
+template <class TIME>
+TIME HTP::util::Timer<TIME>::get_duration()
 {
     return std::chrono::high_resolution_clock::now()-timer_start;
 }
