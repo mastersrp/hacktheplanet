@@ -34,7 +34,7 @@ To build the application in Linux, you will need the following tools
 [CMake][]  (v 2.8)  
   
 Both should be available in your package manager, or already installed.
-Run ./build.sh to build the files.
+Run cmake in this directory, and then build the project with your local build tools. On Linux, run 'make', and on Windows, you're probably going to use Visual Studio.
 Then run HackThePlanet in the bin directory.
 
 [CMake]: www.cmake.org "CMake"

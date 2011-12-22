@@ -12,14 +12,6 @@
 -- }}
 
 -- Includes:
-require( globalincludes.."/profilecreator" )
-require( globalincludes.."/json" )
-require( globalincludes.."/hook" )
-
-function mainloop()
---	stdin = io.input( io.stdin, "r" )
---	input = stdin:read()
---	while(input ~= "exit" ) do
---		input = stdin:read()
---	end
-end
+require( "data/lua/include/profilecreator" )
+require( "data/lua/include/json" )
+require( "data/lua/include/hook" )

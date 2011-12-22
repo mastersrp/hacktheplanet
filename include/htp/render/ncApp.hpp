@@ -1,7 +1,8 @@
 #ifndef HTP_RENDER_NCAPP_HPP
 #define HTP_RENDER_NCAPP_HPP
 
-#include <config.hpp>
+#include <htp/config.hpp>
+#ifdef HTP_USE_NCURSES
 
 namespace HTP {
 	namespace render {
@@ -18,4 +19,5 @@ namespace HTP {
 	}
 }
 
+#endif /* HTP_USE_NCURSES */
 #endif /* HTP_RENDER_NCAPP_HPP */

@@ -1,4 +1,4 @@
-#include <config.hpp>
+#include <htp/config.hpp>
 #ifndef HTP_USE_NCURSES
 #include <iostream>
 

@@ -1,4 +1,4 @@
-#include <config.hpp>
+#include <htp/config.hpp>
 #ifdef HTP_USE_NCURSES
 #include <ncurses.h>
 #endif

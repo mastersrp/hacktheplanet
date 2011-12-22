@@ -1,4 +1,5 @@
-#include <config.hpp>
+#include <htp/config.hpp>
+#ifdef HTP_USE_NCURSES
 #include <ncurses.h>
 #include <htp/render/ncApp.hpp>
 
@@ -28,3 +29,4 @@ void HTP::render::ncApp::SetRunning( int inputch )
 		running = false;
 	}
 }
+#endif /* HTP_USE_NCURSES */

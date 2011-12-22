@@ -1,6 +1,6 @@
 #ifndef HTP_RENDER_HPP
 #define HTP_RENDER_HPP
-#include <config.hpp>
+#include <htp/config.hpp>
 #ifdef HTP_USE_NCURSES
 #	include <htp/render/ncApp.hpp>
 #elif defined HTP_USE_GL

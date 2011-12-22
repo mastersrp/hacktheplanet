@@ -1,7 +1,7 @@
 #ifndef HTP_UTIL_TIMER_HPP
 #define HTP_UTIL_TIMER_HPP
 
-#include <config.hpp>
+#include <htp/config.hpp>
 #include <chrono>
 
 namespace HTP {
