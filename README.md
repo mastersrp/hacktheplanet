@@ -22,6 +22,7 @@ To build the application in any environment, you'll need the following software 
 You'll also need to make sure that it's accessible in the include and linker directories.  
 [lua][]  (v 5.1)  
 [boost][]  (v 1.46.0 or newer)  
+[libscript][] (latest git)
   
 *Windows*  
 To build the application in Windows, you will need the following tools.  
@@ -43,3 +44,4 @@ Then run HackThePlanet in the bin directory.
 [MinGW]: www.mingw.org "MinGW"
 [lua]: www.lua.org "Lua"
 [boost]: www.boost.org "Boost"
+[libscript]: https://github.com/mastersrp/libscript
