@@ -25,8 +25,8 @@
 #include <htp/render.hpp>
 #include <htp/util/timer.hpp>
 
-script::state*		g_ScriptState;
-script::hook*		g_ScriptHook;
+script::state*		g_ScriptState = new script::state();
+script::hook*		g_ScriptHook = new script::hook();
 
 int main( int argc, char *argv[] )
 {
@@ -34,7 +34,6 @@ int main( int argc, char *argv[] )
 	// Lua initialization
 	std::cout << "[*I Initializing lua" << std::endl;
 	timer_loadtime.start();
-	std::cout << "bt **1" << std::endl;
 	g_ScriptState->CreateState();
 	g_ScriptHook->InsertState( g_ScriptState->getState() );
 	// Settings parsing

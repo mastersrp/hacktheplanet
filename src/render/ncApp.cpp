@@ -5,8 +5,8 @@
 
 HTP::render::ncApp::ncApp()
 {
-	initscr();
-	refresh();
+	//initscr();
+	//refresh();
 	running = true;
 }
 
