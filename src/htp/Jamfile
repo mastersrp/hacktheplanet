@@ -1,5 +1,0 @@
-
-exe HackThePlanet
-	: [ glob *.cpp ]
-	: <include>boost <threading>multi
-	;

@@ -1,5 +1,0 @@
-
-lib render:
-	: [ glob *.cpp ]
-	: <threading>multi
-	;
