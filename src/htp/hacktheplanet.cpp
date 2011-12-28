@@ -8,7 +8,6 @@
 #include <fstream>
 #include <string>
 // BOOST C++
-#include <boost/random.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 // Graphical/Visual
@@ -19,7 +18,11 @@
 #include <GL/glut.h>
 #endif
 // Scripting library
-#include <lua.hpp>
+#if defined( SCRIPT_USE_LUA )
+#	include <lua.hpp>
+#elif defined( SCRIPT_USE_AS )
+#	include <angelscript.h>
+#endif
 #include <script.hpp> // The scripthook system
 // CUSTOM
 #include <htp/render.hpp>
@@ -67,6 +70,5 @@ int main( int argc, char *argv[] )
 	*/
 	// Ending scriptHook
 	g_ScriptHook->onExit();
-	// Ending lua scriptEngine
 	return 0;
 }
