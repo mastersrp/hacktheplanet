@@ -3,7 +3,7 @@
 	"profiles":{
 		"default":{
 		"skin":"data/DefaultSkin.png",
-		"engine":"data/lua/engine.lua",
+		"engine":"data/lua/engine",
 		"include":"data/lua/include"
 		}
 	}

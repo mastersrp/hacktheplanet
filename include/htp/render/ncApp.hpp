@@ -7,14 +7,16 @@
 namespace HTP {
 	namespace render {
 		class ncApp {
-			private:
-				bool running;
 			public:
 				ncApp();
+				virtual ~ncApp();
 
 				virtual bool init();
 				virtual bool isRunning();
 				virtual void SetRunning( int inputch );
+				virtual void Draw();
+			private:
+				bool running;
 		};
 	}
 }

@@ -53,7 +53,7 @@ int main( int argc, char *argv[] )
 	boost::property_tree::read_json( "data/settings.json", settings );
 	std::string profile = settings.get<std::string>("profile", "default");
 	std::cout << "[i] Using '" << profile << "' profile." << std::endl;
-	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine.lua" );
+	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
 	g_ScriptState->DoFile( enginelua.c_str() );
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;

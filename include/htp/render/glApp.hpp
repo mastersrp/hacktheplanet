@@ -13,10 +13,11 @@ namespace HTP {
 				int sizeX,sizeY;
 			public:
 				glApp();
+				virtual ~glApp();
 
-				bool init();
-				bool isRunning();
-				void Draw();
+				virtual bool init();
+				virtual bool isRunning();
+				virtual void Draw();
 		};
 	}
 }
