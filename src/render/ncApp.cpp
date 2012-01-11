@@ -12,6 +12,11 @@ namespace HTP {
 			running = true;
 		}
 
+		ncApp::~ncApp()
+		{
+			endwin();
+		}
+
 		bool ncApp::init()
 		{
 			return true;
@@ -30,6 +35,11 @@ namespace HTP {
 				// Add proper cleanup code here, or a call to cleanup what's been done.
 				running = false;
 			}
+		}
+
+		void ncApp::Draw()
+		{
+			refresh();
 		}
 	}
 }
