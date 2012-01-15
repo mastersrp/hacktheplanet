@@ -17,13 +17,14 @@ namespace HTP {
 			public:
 				Timer();
 				
-				void start();
-				void pause();
-				void unpause();
-				TIME get_duration();
+				virtual void start();
+				virtual void pause();
+				virtual void unpause();
+				virtual TIME get_duration();
 		};
 	}
 }
+
 template <class TIME>
 HTP::util::Timer<TIME>::Timer()
 {
@@ -61,7 +62,7 @@ void HTP::util::Timer<TIME>::unpause()
 template <class TIME>
 TIME HTP::util::Timer<TIME>::get_duration()
 {
-    return std::chrono::high_resolution_clock::now()-timer_start;
+	return std::chrono::high_resolution_clock::now() - timer_start;
 }
 
 #endif /* HTP_UTIL_TIMER_HPP */

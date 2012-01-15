@@ -35,8 +35,7 @@ int main( int argc, char *argv[] )
 {
 	HTP::util::Timer<std::chrono::nanoseconds> timer_loadtime;
 	// Lua initialization
-	std::cout << "[*I Initializing lua" << std::endl;
-	timer_loadtime.start();
+	std::cout << "[*I Initializing scripting system" << std::endl;
 	g_ScriptState->CreateState();
 	g_ScriptHook->InsertState( g_ScriptState->getState() );
 	// Settings parsing
@@ -61,13 +60,13 @@ int main( int argc, char *argv[] )
 	HTP::render::App App;
 	g_ScriptHook->onInit();
 	int input;
-	/*
+	
 	while( App.isRunning() )
 	{
 		input = App.ProcessInput();
 		App.SetRunning( input );
 	}
-	*/
+	
 	// Ending scriptHook
 	g_ScriptHook->onExit();
 	return 0;
