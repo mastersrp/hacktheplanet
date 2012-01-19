@@ -3,6 +3,10 @@ GIT=$(which git);
 SVN=$(which svn);
 CWD=$(cd $(basename .); pwd);
 PREMAKE=$(which premake4);
+if [[ "$PREMAKE" == "" ]]; then
+	printf "Could not find premake4!\n";
+	exit 1;
+fi
 PREMAKE_VERSION=$(${PREMAKE} --version);
 function clone {
 	printf "== CLONING ==\n";
