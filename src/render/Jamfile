@@ -1,0 +1,4 @@
+lib render
+	: glApp.cpp
+	: <link>static
+	;

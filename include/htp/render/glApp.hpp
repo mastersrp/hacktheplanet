@@ -3,21 +3,24 @@
 
 #include <htp/config.hpp>
 #ifndef HTP_USE_NCURSES
+#include <irrlicht/irrlicht.h>
 
 namespace HTP {
 	namespace render {
 		class glApp
 		{
-			private:
-				bool running,ispaused;
-				int sizeX,sizeY;
 			public:
 				glApp();
 				virtual ~glApp();
 
-				virtual bool init();
-				virtual bool isRunning();
+				virtual int createDevice();
+				virtual irr::IrrlichtDevice *getDevice();
 				virtual void Draw();
+
+			private:
+				int sizeX, sizeY;
+
+				irr::IrrlichtDevice *device;
 		};
 	}
 }

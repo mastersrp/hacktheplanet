@@ -3,50 +3,46 @@
 #include <iostream>
 
 #include <htp/render/glApp.hpp>
-#include <GL/gl.h>
-#include <GL/glfw.h>
+#include <irrlicht/irrlicht.h>
 
 namespace HTP {
 	namespace render {
 		glApp::glApp()
 		{
-			running = false;
-			ispaused = false;
 			sizeX = 640;
 			sizeY = 480;
-
 		}
 
-		bool glApp::init()
+		glApp::~glApp()
 		{
-			if( glfwInit() == GL_FALSE )
-			{
-				std::cerr << "Couldn't init glfw!" << std::endl;
-				return false;
-			}
-			if( glfwOpenWindow( sizeX, sizeY, 0, 0, 0, 0, 32, 2, GLFW_WINDOW ) == GL_FALSE )
-			{
-				std::cerr << "Couldn't open window!" << std::endl;
-				glfwTerminate();
-				return false;
-			}
-			isrunning = true;
-			return true;
 		}
 
-		bool glApp::isRunning()
+		int glApp::createDevice()
 		{
-			if( running == true && ispaused == false )
+			device = irr::createDevice( irr::video::EDT_OPENGL, irr::core::dimension2d< irr::u32 >( 640, 480 ), 24, false, false, false, 0 );
+			if (!device) 
 			{
-				glfwSetWindowSize( sizeX, sizeY );
-				return isrunning;
+				return 1;
 			}
-			return running;
+			device->setWindowCaption( L"Hello World" );
+			return 0;
+		}
+
+		irr::IrrlichtDevice *glApp::getDevice()
+		{
+			return this->device;
 		}
 
 		void glApp::Draw()
 		{
-			glfwSwapBuffers();
+			device->getVideoDriver()->beginScene( true, true, irr::video::SColor( 255, 100, 101, 140 ) );
+			
+			device->getSceneManager()->drawAll();
+			device->getGUIEnvironment()->drawAll();
+
+			device->getVideoDriver()->endScene();
 		}
+	}
+}
 
 #endif /* !HTP_USE_NCURSES */

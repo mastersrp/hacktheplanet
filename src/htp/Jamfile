@@ -1,0 +1,3 @@
+exe HackThePlanet
+	: hacktheplanet.cpp
+	;

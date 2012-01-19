@@ -57,17 +57,16 @@ int main( int argc, char *argv[] )
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
 	
-	HTP::render::App App;
+	HTP::render::glApp *App = new HTP::render::glApp();
 	g_ScriptHook->onInit();
-	int input;
-	
-	while( App.isRunning() )
+
+	while( App->getDevice()->run() )
 	{
-		input = App.ProcessInput();
-		App.SetRunning( input );
+		App->Draw();
 	}
 	
 	// Ending scriptHook
 	g_ScriptHook->onExit();
+	App->getDevice()->drop();
 	return 0;
 }
