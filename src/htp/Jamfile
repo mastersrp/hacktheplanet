@@ -1,4 +1,3 @@
 exe HackThePlanet
 	: [ glob *.cpp ] ../render//render ../../deps/libscript//script
-	: <library>/usr/lib/liblua.a
 	;

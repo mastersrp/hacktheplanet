@@ -62,7 +62,12 @@ int main( int argc, char *argv[] )
 
 	while( g_Renderer->getDevice()->run() )
 	{
-		g_Renderer->Draw();
+		if( g_Renderer->getDevice()->isWindowActive() )
+		{
+			g_Renderer->Draw();
+		} else {
+			g_Renderer->getDevice()->yield();
+		}
 	}
 
 	// Ending scriptHook
