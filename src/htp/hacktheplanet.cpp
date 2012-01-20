@@ -11,29 +11,26 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 // Graphical/Visual
-#if defined HTP_USE_NCURSES
-#include <ncurses.h>
-#elif defined HTP_USE_GL
-#include <GL/gl.h>
-#include <GL/glut.h>
-#endif
+#include <htp/render.hpp>
 // Scripting library
+#include <script.hpp>
 #if defined( SCRIPT_USE_LUA )
 #	include <lua.hpp>
 #elif defined( SCRIPT_USE_AS )
 #	include <angelscript.h>
 #endif
-#include <script.hpp> // The scripthook system
-// CUSTOM
-#include <htp/render.hpp>
+// Other
 #include <htp/util/timer.hpp>
 
-script::state*		g_ScriptState = new script::state();
-script::hook*		g_ScriptHook = new script::hook();
+
+HTP::App			*g_App = new HTP::App();
+HTP::render::glApp	*g_Renderer = g_App->getRenderer();
+script::state		*g_ScriptState = g_App->getScriptState();
+script::hook		*g_ScriptHook = g_App->getScriptHook();
 
 int main( int argc, char *argv[] )
 {
-	HTP::util::Timer<std::chrono::nanoseconds> timer_loadtime;
+	HTP::util::Timer<std::chrono::nanoseconds> timer_loadtime;;
 	// Lua initialization
 	std::cout << "[*I Initializing scripting system" << std::endl;
 	g_ScriptState->CreateState();
@@ -57,16 +54,19 @@ int main( int argc, char *argv[] )
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
 	
-	HTP::render::glApp *App = new HTP::render::glApp();
 	g_ScriptHook->onInit();
-
-	while( App->getDevice()->run() )
-	{
-		App->Draw();
-	}
 	
+	std::cout << "[i] Passing control to Irrlicht..." << std::endl;
+	std::cout << "===================================" << std::endl;
+	g_Renderer->createDevice();
+
+	while( g_Renderer->getDevice()->run() )
+	{
+		g_Renderer->Draw();
+	}
+
 	// Ending scriptHook
 	g_ScriptHook->onExit();
-	App->getDevice()->drop();
+	g_Renderer->getDevice()->drop();
 	return 0;
 }
