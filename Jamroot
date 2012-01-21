@@ -1,7 +1,7 @@
 using gcc : 4.6 : : <cxxflags>-std=c++0x ;
 
 project
-	: requirements <include>include <include>deps/libscript/include
+	: requirements <include>include
 	;
 
 build-project src/htp ;

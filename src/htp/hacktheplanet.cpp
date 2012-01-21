@@ -45,11 +45,11 @@ int main( int argc, char *argv[] )
 	std::string profile = settings.get<std::string>("profile", "default");
 	std::cout << "[i] Using '" << profile << "' profile." << std::endl;
 	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
-	g_ScriptState->DoFile( enginelua.c_str() );
+	//g_ScriptState->DoFile( enginelua.c_str() );
 	std::cout << "[*] Loading lua framework..." << std::endl;
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
 	
-	g_ScriptHook->onInit();
+	//g_ScriptHook->onInit();
 	
 	std::cout << "[i] Passing control to Irrlicht..." << std::endl;
 	std::cout << "===================================" << std::endl;
@@ -66,7 +66,7 @@ int main( int argc, char *argv[] )
 	}
 
 	// Ending scriptHook
-	g_ScriptHook->onExit();
+	//g_ScriptHook->onExit();
 	g_Renderer->getDevice()->drop();
 	return 0;
 }
