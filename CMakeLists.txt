@@ -6,6 +6,8 @@ include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/include"
 "${CMAKE_CURRENT_SOURCE_DIR}/deps/boost/include" )
 link_directories( "${CMAKE_CURRENT_SOURCE_DIR}/deps/libscript/lib" )
 
+add_subdirectory(
+"${CMAKE_CURRENT_SOURCE_DIR}/deps/angelscript/projects/cmake" )
 add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/deps/libscript" )
 add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/src/render" )
 add_subdirectory( "${CMAKE_CURRENT_SOURCE_DIR}/src/htp" )

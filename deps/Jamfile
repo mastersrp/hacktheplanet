@@ -1,0 +1,12 @@
+lib angelscript
+	: [ glob angelscript/source/.cpp ]
+	: <include>angelscript/include
+	: <link>static
+	;
+
+lib script
+	: [ glob libscript/src/script/*.cpp ] angelscript
+	: <include>libscript/include
+	: <library>/usr/lib/liblua.a <library>/usr/lib/libdl.so <library>/usr/lib/libpthread.so
+	: <link>static
+	;

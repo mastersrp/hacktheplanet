@@ -7,4 +7,6 @@ done
 for DIR in $(find . -type d -iname 'CMakeFiles'); do
     rm -Rvf $DIR;
 done
-rm bin/HackThePlanet
+if [[ -e "bin/HackThePlanet" ]]; then 
+	rm -v bin/HackThePlanet
+fi

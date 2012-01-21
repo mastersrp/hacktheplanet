@@ -14,11 +14,6 @@
 #include <htp/render.hpp>
 // Scripting library
 #include <script.hpp>
-#if defined( SCRIPT_USE_LUA )
-#	include <lua.hpp>
-#elif defined( SCRIPT_USE_AS )
-#	include <angelscript.h>
-#endif
 // Other
 #include <htp/util/timer.hpp>
 

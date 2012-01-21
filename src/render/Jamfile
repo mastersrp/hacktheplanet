@@ -1,4 +1,6 @@
 lib render
-	: glApp.cpp
+	: [ glob *.cpp ]
+	: <library>/usr/lib/libX11.so <library>/usr/lib/libGL.so <library>/usr/lib/libXext.so <library>/usr/lib/libpng.so <library>/usr/lib/libjpeg.so <library>/usr/lib/libbz2.so
+	: <library>/usr/lib/libIrrlicht.a
 	: <link>static
 	;

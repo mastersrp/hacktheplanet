@@ -13,4 +13,8 @@ install_manifest.txt
 # Other
 bin/HackThePlanet
 bin/config.log
-lib/gwen/
+# Boost.Build related
+src/htp/bin/
+src/render/bin/
+# Dependencies
+deps/bin/
