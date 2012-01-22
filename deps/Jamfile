@@ -7,6 +7,6 @@ lib angelscript
 lib script
 	: [ glob libscript/src/script/*.cpp ] angelscript
 	: <include>libscript/include
-	: <library>/usr/lib/liblua.a <library>/usr/lib/libdl.so <library>/usr/lib/libpthread.so
+	: <library>/usr/lib/libdl.so <library>/usr/lib/libpthread.so
 	: <link>static
 	;
