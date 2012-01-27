@@ -1,0 +1,7 @@
+﻿Map Archive Specification
+
+1. Each map archive must contain a compiled map file, following the map specifications, and a configuration file written in JSON.
+2. Each archive MUST be compressed in a .zip file, following the zip specification.
+Compresseion ratio is undefined, and is therefore user-definable.
+3. Each configuration file contains data regarding entities, including, but not limited to:
+Parents, coordinated, name, and other properties.
