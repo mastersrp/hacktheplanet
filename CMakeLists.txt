@@ -5,7 +5,8 @@ include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/include"
 "${CMAKE_CURRENT_SOURCE_DIR}/deps/libscript/include"
 "${CMAKE_CURRENT_SOURCE_DIR}/deps/angelscript/include"
 "${CMAKE_CURRENT_SOURCE_DIR}/deps/boost/include" )
-link_directories( "${CMAKE_CURRENT_SOURCE_DIR}/deps/libscript/lib" )
+link_directories( "${CMAKE_CURRENT_SOURCE_DIR}/deps/libscript/lib"
+"${LIBRARY_OUTPUT_PATH}" )
 
 add_subdirectory(
 "${CMAKE_CURRENT_SOURCE_DIR}/deps" )
