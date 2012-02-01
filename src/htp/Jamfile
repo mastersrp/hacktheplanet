@@ -1,3 +1,6 @@
 exe HackThePlanet
-	: ../../deps//script ../render//render [ glob *.cpp ]
+	: ../../deps//script ../render//render ../kernel//kernel [ glob *.cpp ]
+	: <include>../../deps/libscript/include <include>../../deps/angelscript/include
+	: <library>/usr/lib/libboost_filesystem.so
+	: <link>static
 	;

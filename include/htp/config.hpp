@@ -11,6 +11,9 @@
 #define SCRIPT_USE_CUSTOM_CONFIG
 #define SCRIPT_USE_AS // Use AngelScript for our script engine
 
+#define BEGIN_HTP_NAMESPACE namespace HTP {
+#define END_HTP_NAMESPACE }
+
 /* CONFIGURATION LISTED ABOVE */
 
 #endif /* CONFIG_HPP */

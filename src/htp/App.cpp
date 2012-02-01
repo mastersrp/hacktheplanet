@@ -8,9 +8,10 @@
 namespace HTP {
 	App::App()
 	{
-		renderer = new render::glApp();
-		scriptState = new script::state();
-		scriptHook = new script::hook();
+		this->renderer = new render::glApp();
+		this->scriptState = new script::state();
+		this->scriptHook = new script::hook();
+		this->fileSystem = new kernel::filesystem();
 	}
 
 	App::~App()
@@ -19,6 +20,7 @@ namespace HTP {
 		delete renderer;
 		delete scriptState;
 		delete scriptHook;
+		delete fileSystem;
 	}
 
 	render::glApp *App::getRenderer()
@@ -34,6 +36,11 @@ namespace HTP {
 	script::hook *App::getScriptHook()
 	{
 		return this->scriptHook;
+	}
+
+	kernel::filesystem *App::getFileSystem()
+	{
+		return this->fileSystem;
 	}
 
 

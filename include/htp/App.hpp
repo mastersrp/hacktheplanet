@@ -7,6 +7,7 @@
 #include <htp/config.hpp>
 #include <script.hpp>
 #include <htp/render.hpp>
+#include <htp/kernel.hpp>
 
 namespace HTP {
 	class App {
@@ -14,13 +15,15 @@ namespace HTP {
 			App();
 			virtual ~App();
 
-			virtual render::glApp *getRenderer();
-			virtual script::state *getScriptState();
-			virtual script::hook *getScriptHook();
+			virtual render::glApp 		*getRenderer();
+			virtual script::state 		*getScriptState();
+			virtual script::hook 		*getScriptHook();
+			virtual kernel::filesystem	*getFileSystem();
 		private:
-			render::glApp *renderer;
-			script::state *scriptState;
-			script::hook *scriptHook;
+			render::glApp 			*renderer;
+			script::state 			*scriptState;
+			script::hook 			*scriptHook;
+			kernel::filesystem		*fileSystem;
 	};
 }
 
