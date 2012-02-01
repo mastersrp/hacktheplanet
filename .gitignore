@@ -16,5 +16,6 @@ bin/config.log
 # Boost.Build related
 src/htp/bin/
 src/render/bin/
+src/kernel/bin/
 # Dependencies
 deps/bin/
