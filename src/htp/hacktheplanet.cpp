@@ -14,34 +14,37 @@
 #include <htp/render.hpp>
 // Scripting library
 #include <script.hpp>
+// Low-level library
+#include <htp/kernel.hpp>
 // Other
 #include <htp/util/timer.hpp>
 
 
-HTP::App			*g_App = new HTP::App();
-HTP::render::glApp	*g_Renderer = g_App->getRenderer();
-script::state		*g_ScriptState = g_App->getScriptState();
-script::hook		*g_ScriptHook = g_App->getScriptHook();
-
 int main( int argc, char *argv[] )
 {
+
+	HTP::App				*g_App = new HTP::App( argc, argv );
+	HTP::render::glApp		*g_Renderer = g_App->getRenderer();
+	script::state			*g_ScriptState = g_App->getScriptState();
+	script::hook			*g_ScriptHook = g_App->getScriptHook();
+	HTP::kernel::filesystem	*g_FileSystem = g_App->getFileSystem();
+
 	HTP::util::Timer<std::chrono::nanoseconds> timer_loadtime;;
-	// Lua initialization
+	// Setting up filesystem and paths
+	// Script initialization
 	std::cout << "[*I Initializing scripting system" << std::endl;
 	g_ScriptState->CreateState();
 	g_ScriptHook->InsertState( g_ScriptState->getState() );
 	// Settings parsing
 	std::cout << "[*] Loading settings...";
 	boost::property_tree::ptree settings;
-	std::ifstream settings_file;
-	settings_file.open("data/settings.json");
-    if( !settings_file ) {
+    if( g_FileSystem->exists( "settings.json" ) == false || g_FileSystem->is_file( "settings.json") == false ) {
 		std::cerr << "Couldn't open 'settings.json'!" << std::endl;
 		g_ScriptHook->onExit();
 		return 1;
 	}
-	std::cout << "Done!" << std::endl;
 	boost::property_tree::read_json( "data/settings.json", settings );
+	std::cout << "Done!" << std::endl;
 	std::string profile = settings.get<std::string>("profile", "default");
 	std::cout << "[i] Using '" << profile << "' profile." << std::endl;
 	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );

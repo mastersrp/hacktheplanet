@@ -10,3 +10,7 @@ lib script
 	: <library>/usr/lib/libdl.so <library>/usr/lib/libpthread.so
 	: <link>static
 	;
+
+lib physfs
+	: [ glob physfs/lzma/*.cpp ] [ glob physfs/platform/*.c ] [ glob physfs/archivers/*.c ]
+	;

@@ -4,4 +4,21 @@ project
 	: requirements <include>include
 	;
 
-build-project src/htp ;
+lib kernel
+	: [ glob src/kernel/*.cpp ]
+	: <link>static
+	;
+
+lib render
+	: [ glob src/render/*.cpp ]
+	: <library>/usr/lib/libX11.so <library>/usr/lib/libGL.so <library>/usr/lib/libXext.so <library>/usr/lib/libpng.so <library>/usr/lib/libjpeg.so <library>/usr/lib/libbz2.so
+	: <library>/usr/lib/libIrrlicht.a
+	: <link>static
+	;
+
+exe HackThePlanet
+	: deps//script render kernel [ glob src/htp/*.cpp ]
+	: <include>deps/libscript/include <include>deps/angelscript/include
+	: <library>/usr/lib/libboost_filesystem.so
+	: <link>static
+	;

@@ -12,7 +12,7 @@
 namespace HTP {
 	class App {
 		public:
-			App();
+			App( int argc, char *argv[] );
 			virtual ~App();
 
 			virtual render::glApp 		*getRenderer();

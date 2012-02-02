@@ -6,12 +6,12 @@
 #include <htp/App.hpp>
 
 namespace HTP {
-	App::App()
+	App::App( int argc, char *argv[] )
 	{
 		this->renderer = new render::glApp();
 		this->scriptState = new script::state();
 		this->scriptHook = new script::hook();
-		this->fileSystem = new kernel::filesystem();
+		this->fileSystem = new kernel::filesystem( argv[0] );
 	}
 
 	App::~App()
