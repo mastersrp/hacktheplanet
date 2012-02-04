@@ -1,16 +1,4 @@
-lib angelscript
-	: [ glob angelscript/source/.cpp ]
-	: <include>angelscript/include
-	: <link>static
-	;
-
-lib script
-	: [ glob libscript/src/script/*.cpp ] angelscript
-	: <include>libscript/include
-	: <library>/usr/lib/libdl.so <library>/usr/lib/libpthread.so
-	: <link>static
-	;
-
 lib physfs
-	: [ glob physfs/lzma/*.cpp ] [ glob physfs/platform/*.c ] [ glob physfs/archivers/*.c ]
+	: [ glob physfs/lzma/C/*.c : physfs/lzma/C/Threads.c physfs/lzma/C/7zCrcT8.c ] [ glob physfs/platform/*.c ] [ glob physfs/archivers/*.c ] [ glob physfs/zlib123/*.c ]
+	: <include>physfs/ <include>physfs/lzma/ <include>physfs/platform/ <include>physfs/archivers <include>physfs/zlib123/
 	;

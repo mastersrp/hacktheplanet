@@ -1,3 +1,0 @@
-This redistribution of angelscript, licensed under the zlib license,
-has been stripped of EVERYTHING not completely required to build.
-Every source code file (.cpp) and header file (.h/.hpp) remains.
