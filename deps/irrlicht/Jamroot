@@ -1,0 +1,4 @@
+lib Irrlicht
+	: [ glob *.cpp ]
+	: <link>static
+	;

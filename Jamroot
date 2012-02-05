@@ -5,21 +5,20 @@ project
 	;
 
 lib kernel
-	: deps//physfs [ glob src/kernel/*.cpp ]
+	: deps/physfs/ [ glob src/kernel/*.cpp ]
 	: <include>deps/physfs/
 	: <link>static
 	;
 
 lib render
-	: [ glob src/render/*.cpp ]
+	: deps/irrlicht/ [ glob src/render/*.cpp ]
 	: <library>/usr/lib/libX11.so <library>/usr/lib/libGL.so <library>/usr/lib/libXext.so <library>/usr/lib/libpng.so <library>/usr/lib/libjpeg.so <library>/usr/lib/libbz2.so
-	: <library>/usr/lib/libIrrlicht.a
 	: <link>static
 	;
 
 exe HackThePlanet
-	: deps/libscript//deps deps/libscript//script deps//physfs render kernel [ glob src/htp/*.cpp ]
+	: deps/libscript//deps deps/libscript//script deps/physfs/ render kernel [ glob src/htp/*.cpp ]
 	: <include>deps/libscript/include
-	: <library>/usr/lib/libboost_filesystem.so
-	: <link>static <runtime-link>static
+	: <library>/usr/lib/libboost_filesystem-mt.so
+	: <link>static
 	;

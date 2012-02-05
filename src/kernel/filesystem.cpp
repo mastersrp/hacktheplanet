@@ -4,7 +4,6 @@
  */
 #include <htp/config.hpp>
 #include <htp/kernel/filesystem.hpp>
-#include <physfs.h>
 #include <boost/filesystem.hpp>
 #include <string>
 #include <iterator>
@@ -16,12 +15,12 @@ BEGIN_HTP_NAMESPACE
 	namespace kernel {
 		filesystem::filesystem( char *argv[] )
 		{
-			PHYSFS_init( argv[0] );
+			
 		}
 
 		filesystem::filesystem( char *argv )
 		{
-			PHYSFS_init( argv );
+			
 		}
 
 		filesystem::~filesystem()
