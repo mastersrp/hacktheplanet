@@ -1,10 +1,12 @@
 {
-	"profile"		:	"default",
-	"profiles"		:{
+	"profile"	:	"default",
+	"profiles"	:{
 		"default"	:{
-		"skin"		:	"data/DefaultSkin.png",
-		"engine"	:	"data/script/engine",
-		"include"	:	"data/script/include"
+			"skin"		:	"data/DefaultSkin.png",
+			"engine"	:	"data/script/engine",
+			"includes"	:[
+							"data/script/include"
+			]
 		}
 	}
 }

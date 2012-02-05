@@ -1,4 +1,0 @@
-lib physfs
-	: [ glob physfs/lzma/C/*.c : physfs/lzma/C/Threads.c physfs/lzma/C/7zCrcT8.c ] [ glob physfs/platform/*.c ] [ glob physfs/archivers/*.c ] [ glob physfs/zlib123/*.c ]
-	: <include>physfs/ <include>physfs/lzma/ <include>physfs/platform/ <include>physfs/archivers <include>physfs/zlib123/
-	;

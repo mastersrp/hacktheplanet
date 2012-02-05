@@ -1,0 +1,5 @@
+lib physfs
+	: [ glob lzma/C/*.c : lzma/C/Threads.c lzma/C/7zCrcT8.c ] [ glob platform/*.c ] [ glob archivers/*.c ] [ glob zlib123/*.c ]
+	: <include>. <include>lzma/ <include>platform/ <include>archivers <include>zlib123/
+	: <link>static
+	;
