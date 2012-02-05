@@ -72,20 +72,17 @@ BEGIN_HTP_NAMESPACE
 			}
 		}
 
-		template <class FS>
-		bool filesystem::exists( FS path )
+		bool filesystem::exists( std::string path )
 		{
 			return boost::filesystem::exists( path );
 		}
 
-		template <class FS>
-		bool filesystem::is_path( FS path )
+		bool filesystem::is_path( std::string path )
 		{
 			return boost::filesystem::is_directory( path );
 		}
 
-		template <class FS>
-		bool filesystem::is_file( FS file )
+		bool filesystem::is_file( std::string file )
 		{
 			return boost::filesystem::is_regular_file( file );
 		}

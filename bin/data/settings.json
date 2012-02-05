@@ -4,9 +4,7 @@
 		"default"	:{
 			"skin"		:	"data/DefaultSkin.png",
 			"engine"	:	"data/script/engine",
-			"includes"	:[
-							"data/script/include"
-			]
+			"includes"	:	"data/script/include"
 		}
 	}
 }

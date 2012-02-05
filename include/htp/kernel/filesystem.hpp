@@ -19,9 +19,9 @@ BEGIN_HTP_NAMESPACE
 				virtual int setWritePath( std::string path );
 				virtual std::string getFile( std::string file );
 
-				template <class FS> bool exists( FS path );
-				template <class FS> bool is_path( FS path );
-				template <class FS> bool is_file( FS file );
+				bool exists( std::string path );
+				bool is_path( std::string path );
+				bool is_file( std::string file );
 			private:
 				std::set< std::string >		fileList;
 				std::string					writePath;

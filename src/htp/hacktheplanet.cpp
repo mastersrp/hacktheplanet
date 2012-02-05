@@ -38,7 +38,7 @@ int main( int argc, char *argv[] )
 	// Settings parsing
 	std::cout << "[*] Loading settings...";
 	boost::property_tree::ptree settings;
-    if( g_FileSystem->exists( "settings.json" ) == false || g_FileSystem->is_file( "settings.json") == false ) {
+    if( g_FileSystem->exists( "data/settings.json" ) == false || g_FileSystem->is_file( "data/settings.json") == false ) {
 		std::cerr << "Couldn't open 'settings.json'!" << std::endl;
 		g_ScriptHook->onExit();
 		return 1;
@@ -47,9 +47,13 @@ int main( int argc, char *argv[] )
 	std::cout << "Done!" << std::endl;
 	std::string profile = settings.get<std::string>("profile", "default");
 	std::cout << "[i] Using '" << profile << "' profile." << std::endl;
-	std::string enginelua = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
+	std::string enginescript = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
+	enginescript += ".as";
 	//g_ScriptState->DoFile( enginelua.c_str() );
-	std::cout << "[*] Loading lua framework..." << std::endl;
+	std::cout << "[*] Loading script framework..." << std::endl;
+	if( g_ScriptState->DoFile( enginescript ) != 0 ) {
+		std::cout << "[note] did something go wrong?" << std::endl;
+	}
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
 	
 	//g_ScriptHook->onInit();
