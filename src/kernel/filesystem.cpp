@@ -10,6 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include <set>
+#include <irrlicht/irrlicht.h>
 
 BEGIN_HTP_NAMESPACE
 	namespace kernel {
@@ -27,17 +28,25 @@ BEGIN_HTP_NAMESPACE
 		{
 		}
 
+		void filesystem::insertDevice( irr::IrrlichtDevice *device )
+		{
+			this->device = device;
+		}
+
 		int filesystem::setWritePath( std::string path )
 		{
+			std::cout << path << std::endl;
 			boost::filesystem::path p (path.c_str());
 			try
 			{
 				if( exists( path ) )
 				{
+					std::cout << "path exists" << std::endl;
 					if( is_file( path ) )
 					{
 						return 300;
 					} else if ( is_path( path ) ) {
+						std::cout << "path is path" << std::endl;
 						typedef std::vector<boost::filesystem::path> vec;
 						vec v;
 

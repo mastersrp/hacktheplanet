@@ -7,6 +7,7 @@
 #include <htp/config.hpp>
 #include <string>
 #include <set>
+#include <irrlicht/irrlicht.h>
 
 BEGIN_HTP_NAMESPACE
 	namespace kernel {
@@ -16,6 +17,7 @@ BEGIN_HTP_NAMESPACE
 				filesystem( char *argv );
 
 				virtual ~filesystem();
+				virtual void insertDevice( irr::IrrlichtDevice *device );
 				virtual int setWritePath( std::string path );
 				virtual std::string getFile( std::string file );
 
@@ -25,6 +27,7 @@ BEGIN_HTP_NAMESPACE
 			private:
 				std::set< std::string >		fileList;
 				std::string					writePath;
+				irr::IrrlichtDevice			*device;
 		};
 	}
 END_HTP_NAMESPACE

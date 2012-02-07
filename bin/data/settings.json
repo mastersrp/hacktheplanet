@@ -2,6 +2,7 @@
 	"profile"	:	"default",
 	"profiles"	:{
 		"default"	:{
+			"data"		:	"data/",
 			"skin"		:	"data/DefaultSkin.png",
 			"engine"	:	"data/script/engine",
 			"includes"	:	"data/script/include"

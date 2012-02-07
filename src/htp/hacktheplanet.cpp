@@ -49,6 +49,7 @@ int main( int argc, char *argv[] )
 	std::cout << "[i] Using '" << profile << "' profile." << std::endl;
 	std::string enginescript = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
 	enginescript += ".as";
+	std::string enginedata = settings.get<std::string>("profile."+settings.get<std::string>(profile,"default")+".data", "data/" );
 	//g_ScriptState->DoFile( enginelua.c_str() );
 	std::cout << "[*] Loading script framework..." << std::endl;
 	if( g_ScriptState->DoFile( enginescript ) != 0 ) {
@@ -61,6 +62,23 @@ int main( int argc, char *argv[] )
 	std::cout << "[i] Passing control to Irrlicht..." << std::endl;
 	std::cout << "===================================" << std::endl;
 	g_Renderer->createDevice();
+	g_FileSystem->insertDevice( g_Renderer->getDevice() );
+	int err = g_FileSystem->setWritePath( enginedata );
+	switch( err )
+	{
+		case 200 :
+			break;
+		case 404 :
+			std::cerr << "[ERR] DATA PATH COULD NOT LOAD" << std::endl;
+			return 1;
+		case 300 :
+			std::cerr << "[ERR] DATA PATH SET TO FILE" << std::endl;
+			return 1;
+		default:
+			break;
+	}
+
+	g_Renderer->getDevice()->getSceneManager()->addCameraSceneNodeFPS();
 
 	while( g_Renderer->getDevice()->run() )
 	{
