@@ -5,10 +5,9 @@
 #include <htp/config.hpp>
 #include <htp/kernel/filesystem.hpp>
 #include <boost/filesystem.hpp>
+#include <boost/foreach.hpp>
+#include <boost/algorithm/string.hpp>
 #include <string>
-#include <iterator>
-#include <vector>
-#include <algorithm>
 #include <set>
 #include <irrlicht/irrlicht.h>
 
@@ -41,21 +40,20 @@ BEGIN_HTP_NAMESPACE
 			{
 				if( exists( path ) )
 				{
-					std::cout << "path exists" << std::endl;
 					if( is_file( path ) )
 					{
 						return 300;
 					} else if ( is_path( path ) ) {
-						std::cout << "path is path" << std::endl;
-						typedef std::vector<boost::filesystem::path> vec;
-						vec v;
 
-						copy( boost::filesystem::directory_iterator(p), boost::filesystem::directory_iterator(), std::back_inserter(v) );
-
-						std::sort(v.begin(), v.end() );
-						for( vec::const_iterator it (v.begin()); it != v.end(); ++it )
+						boost::filesystem::directory_iterator it(path), eod;
+						BOOST_FOREACH( const boost::filesystem::path &p, std::make_pair(it, eod) )
 						{
-							std::cout << " " << *it << std::endl;
+							if( is_file( p.string() ) ) {
+								if( boost::algorithm::ends_with( p.string(), ".zip" ) ) {
+									std::cout << "[FS] Adding filesystem: " << p << std::endl;
+									this->device->getFileSystem()->addFileArchive( p.string().c_str(), false, false );
+								}
+							}
 						}
 						return 200;
 					}

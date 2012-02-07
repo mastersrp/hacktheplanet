@@ -12,13 +12,13 @@
 #include <boost/property_tree/json_parser.hpp>
 // Graphical/Visual
 #include <htp/render.hpp>
+#include <irrlicht/irrlicht.h>
 // Scripting library
 #include <script.hpp>
 // Low-level library
 #include <htp/kernel.hpp>
 // Other
 #include <htp/util/timer.hpp>
-
 
 int main( int argc, char *argv[] )
 {
@@ -40,24 +40,23 @@ int main( int argc, char *argv[] )
 	boost::property_tree::ptree settings;
     if( g_FileSystem->exists( "data/settings.json" ) == false || g_FileSystem->is_file( "data/settings.json") == false ) {
 		std::cerr << "Couldn't open 'settings.json'!" << std::endl;
-		g_ScriptHook->onExit();
-		return 1;
+	} else {
+		boost::property_tree::read_json( "data/settings.json", settings );
 	}
-	boost::property_tree::read_json( "data/settings.json", settings );
 	std::cout << "Done!" << std::endl;
 	std::string profile = settings.get<std::string>("profile", "default");
 	std::cout << "[i] Using '" << profile << "' profile." << std::endl;
 	std::string enginescript = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
 	enginescript += ".as";
 	std::string enginedata = settings.get<std::string>("profile."+settings.get<std::string>(profile,"default")+".data", "data/" );
-	//g_ScriptState->DoFile( enginelua.c_str() );
+	g_ScriptState->DoFile( enginescript.c_str() );
 	std::cout << "[*] Loading script framework..." << std::endl;
 	if( g_ScriptState->DoFile( enginescript ) != 0 ) {
 		std::cout << "[note] did something go wrong?" << std::endl;
 	}
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
 	
-	//g_ScriptHook->onInit();
+	g_ScriptHook->onInit();
 	
 	std::cout << "[i] Passing control to Irrlicht..." << std::endl;
 	std::cout << "===================================" << std::endl;
@@ -91,7 +90,7 @@ int main( int argc, char *argv[] )
 	}
 
 	// Ending scriptHook
-	//g_ScriptHook->onExit();
+	g_ScriptHook->onExit();
 	g_Renderer->getDevice()->drop();
 	return 0;
 }
