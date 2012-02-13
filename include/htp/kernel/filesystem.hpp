@@ -24,10 +24,13 @@ BEGIN_HTP_NAMESPACE
 				bool exists( std::string path );
 				bool is_path( std::string path );
 				bool is_file( std::string file );
+
+				virtual irr::io::IFileSystem *getFileSystemCore();
 			private:
 				std::set< std::string >		fileList;
 				std::string					writePath;
 				irr::IrrlichtDevice			*device;
+				irr::io::IFileSystem		*FileSystem;
 		};
 	}
 END_HTP_NAMESPACE

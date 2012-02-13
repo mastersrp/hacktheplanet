@@ -42,14 +42,12 @@ int main( int argc, char *argv[] )
 		std::cerr << "Couldn't open 'settings.json'!" << std::endl;
 	} else {
 		boost::property_tree::read_json( "data/settings.json", settings );
+		std::cout << "Done!" << std::endl;
 	}
-	std::cout << "Done!" << std::endl;
 	std::string profile = settings.get<std::string>("profile", "default");
 	std::cout << "[i] Using '" << profile << "' profile." << std::endl;
 	std::string enginescript = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
-	enginescript += ".as";
 	std::string enginedata = settings.get<std::string>("profile."+settings.get<std::string>(profile,"default")+".data", "data/" );
-	g_ScriptState->DoFile( enginescript.c_str() );
 	std::cout << "[*] Loading script framework..." << std::endl;
 	if( g_ScriptState->DoFile( enginescript ) != 0 ) {
 		std::cout << "[note] did something go wrong?" << std::endl;
@@ -57,9 +55,6 @@ int main( int argc, char *argv[] )
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
 	
 	g_ScriptHook->onInit();
-	
-	std::cout << "[i] Passing control to Irrlicht..." << std::endl;
-	std::cout << "===================================" << std::endl;
 	g_Renderer->createDevice();
 	g_FileSystem->insertDevice( g_Renderer->getDevice() );
 	int err = g_FileSystem->setWritePath( enginedata );

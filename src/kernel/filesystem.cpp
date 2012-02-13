@@ -29,7 +29,7 @@ BEGIN_HTP_NAMESPACE
 
 		void filesystem::insertDevice( irr::IrrlichtDevice *device )
 		{
-			this->device = device;
+			this->FileSystem = device->getFileSystem();
 		}
 
 		int filesystem::setWritePath( std::string path )
@@ -51,7 +51,8 @@ BEGIN_HTP_NAMESPACE
 							if( is_file( p.string() ) ) {
 								if( boost::algorithm::ends_with( p.string(), ".zip" ) ) {
 									std::cout << "[FS] Adding filesystem: " << p << std::endl;
-									this->device->getFileSystem()->addFileArchive( p.string().c_str(), false, false );
+									//this->device->getFileSystem()->addFileArchive( p.string().c_str(), false, false );
+									this->FileSystem->addFileArchive( p.string().c_str(), false, false );
 								}
 							}
 						}
@@ -92,6 +93,11 @@ BEGIN_HTP_NAMESPACE
 		bool filesystem::is_file( std::string file )
 		{
 			return boost::filesystem::is_regular_file( file );
+		}
+
+		irr::io::IFileSystem	*filesystem::getFileSystemCore()
+		{
+			return this->FileSystem;
 		}
 	}
 END_HTP_NAMESPACE

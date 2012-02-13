@@ -3,6 +3,8 @@
 
 /* CONFIGURATION LISTED BELOW */
 
+#define SCRIPT_USE_AS // Use AngelScript as the scripting language
+
 // Graphical/Visual configurations
 //#define HTP_USE_NCURSES
 #define HTP_USE_GL			// irrLicht + OpenGL
