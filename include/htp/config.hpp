@@ -6,8 +6,8 @@
 #define SCRIPT_USE_AS // Use AngelScript as the scripting language
 
 // Graphical/Visual configurations
-//#define HTP_USE_NCURSES
-#define HTP_USE_GL			// irrLicht + OpenGL
+//#define HTP_GL_IRRLICHT	// irrLicht + OpenGL
+//#define HTP_GL_SDL		// SDL 2.0
 //#define HTP_USE_GWEN		// Skinable GUI system written by the creator of Garry's Mod; Garry Newman
 
 #define SCRIPT_USE_CUSTOM_CONFIG
