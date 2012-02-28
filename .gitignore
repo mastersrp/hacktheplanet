@@ -4,20 +4,8 @@
 *.a
 *.exe
 *.tmp
-# CMAKE
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-install_manifest.txt
+# Premake files
+build/
+lib/
 # Other
 bin/HackThePlanet
-bin/config.log
-bin/gcc*/
-bin/msvc*/
-# Boost.Build related
-src/htp/bin/
-src/render/bin/
-src/kernel/bin/
-# Dependencies
-deps/bin/
