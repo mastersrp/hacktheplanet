@@ -1,3 +1,6 @@
+include( "deps/libscript" )
+include( "deps/vivos" )
+
 solution "HackThePlanet"
 	configurations { "Debug", "Release" }
 	libdirs { "lib" }
@@ -23,9 +26,9 @@ solution "HackThePlanet"
 		language "C++"
 		files { "include/**.hpp", "src/render/**.cpp" }
 
-	project "hacktheplannet"
+	project "hacktheplanet"
 		kind "ConsoleApp"
 		targetdir "bin"
 		language "C++"
 		files { "include/**.hpp", "src/htp/**.cpp" }
-		links { "kernel", "render" }
+		links { "kernel", "render", "vivos" }
