@@ -1,0 +1,3 @@
+[submodule "deps/vivos"]
+	path = deps/vivos
+	url = git://github.com/mastersrp/vivos.git
