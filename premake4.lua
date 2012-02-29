@@ -31,4 +31,4 @@ solution "HackThePlanet"
 		targetdir "bin"
 		language "C++"
 		files { "include/**.hpp", "src/htp/**.cpp" }
-		links { "kernel", "render", "vivos" }
+		links { "kernel", "render", "Vivos/vivos" }
