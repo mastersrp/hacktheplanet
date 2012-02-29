@@ -3,7 +3,7 @@
 	"depends":{
 		"boost":"1.47.0",
 		"libscript":"github.com/mastersrp/libscript.git",
-		"irrlicht":"1.7.3"
-	},
-	"build":"/usr/bin/make"
+		"irrlicht":"1.7.3",
+		"premake4":"4.3"
+	}
 }
