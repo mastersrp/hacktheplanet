@@ -3,10 +3,8 @@
 
 /* CONFIGURATION LISTED BELOW */
 
-#define SCRIPT_USE_AS // Use AngelScript as the scripting language
-
 // Graphical/Visual configurations
-#define HTP_GL_IRRLICHT	// irrLicht + OpenGL
+#define HTP_GL_IRRLICHT		// irrLicht + OpenGL
 //#define HTP_GL_SDL		// SDL 2.0
 //#define HTP_USE_GWEN		// Skinable GUI system written by the creator of Garry's Mod; Garry Newman
 
@@ -17,5 +15,9 @@
 #define END_HTP_NAMESPACE }
 
 /* CONFIGURATION LISTED ABOVE */
+
+#ifdef __GXX_EXPERIMENTAL_CXX0X__
+	#define HTP_CXX0X
+#endif
 
 #endif /* CONFIG_HPP */

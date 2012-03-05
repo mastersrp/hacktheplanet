@@ -29,7 +29,11 @@ int main( int argc, char *argv[] )
 	script::hook			*g_ScriptHook = g_App->getScriptHook();
 	HTP::kernel::filesystem	*g_FileSystem = g_App->getFileSystem();
 
+	#ifdef HTP_CXX0X
 	HTP::util::Timer<std::chrono::nanoseconds> timer_loadtime;;
+	#else
+	HTP::util::Timer timer_loadtime;
+	#endif
 	// Setting up filesystem and paths
 	// Script initialization
 	std::cout << "[*I Initializing scripting system" << std::endl;

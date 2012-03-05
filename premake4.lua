@@ -4,14 +4,15 @@ include( "deps/vivos" )
 solution "HackThePlanet"
 	configurations { "Debug", "Release" }
 	libdirs { "lib" }
-	includedirs { "include", "deps/**" }
+	includedirs { "include", "deps/libscript/include", "deps/vivos/include" }
 	location( "build/" .. _ACTION )
 	
 	configuration "Debug"
-		defines { "_DEBUG" }
+		defines { "_DEBUG", "VIVOS_USE_NAMESPACE", "VIVOS_HEADER_ONLY" }
 		flags { "Symbols" }
 	
 	configuration "Release"
+		defines { "VIVOS_USE_NAMESPACE", "VIVOS_HEADER_ONLY" }
 		flags { "Optimize", "StaticRuntime" }
 	
 	project "kernel"
