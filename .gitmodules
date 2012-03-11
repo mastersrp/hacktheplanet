@@ -1,6 +1,6 @@
-[submodule "deps/vivos"]
-	path = deps/vivos
+[submodule "vivos"]
+	path = vivos
 	url = git://github.com/mastersrp/vivos.git
-[submodule "deps/libscript"]
-	path = deps/libscript
+[submodule "libscript"]
+	path = libscript
 	url = git://github.com/mastersrp/libscript.git
