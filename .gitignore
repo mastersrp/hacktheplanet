@@ -5,7 +5,7 @@
 *.exe
 *.tmp
 # Premake files
-build/
+build/projects
 lib/
 # Other
 bin/HackThePlanet

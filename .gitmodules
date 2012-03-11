@@ -1,6 +1,6 @@
 [submodule "vivos"]
 	path = vivos
-	url = git://github.com/mastersrp/vivos.git
+	url = git://github.com/mastersrp/vivos
 [submodule "libscript"]
 	path = libscript
-	url = git://github.com/mastersrp/libscript.git
+	url = git://github.com/mastersrp/libscript
