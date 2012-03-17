@@ -4,9 +4,9 @@
  */
 #include <htp/config.hpp>
 #include <htp/kernel/filesystem.hpp>
-#include <boost/foreach.hpp>
-#include <boost/algorithm/string.hpp>
-#include <vivos/FileSystem.hpp>
+#include <fastcxx/filesystem.hpp>
+#include <fastcxx/types/string.hpp>
+#include <iostream>
 #include <string>
 #include <set>
 #include <irrlicht/irrlicht.h>
@@ -35,12 +35,11 @@ BEGIN_HTP_NAMESPACE
 		int filesystem::setWritePath( std::string path )
 		{
 			std::cout << path << std::endl;
-			vivos::FileSystem *fs = new vivos::FileSystem();
-			if( fs->exists( path.c_str() ) ) {
-				if( fs->is_file( path.c_str() ) ) {
+			if( fastcxx::filesystem::exists( path.c_str() ) ) {
+				if( fastcxx::filesystem::is_file( path.c_str() ) ) {
 					return 300;
-				} else if ( fs->is_directory( path.c_str() ) ) {
-					vivos::Directory *directory = fs->dopen( path.c_str() );
+				} else if ( fastcxx::filesystem::is_directory( path.c_str() ) ) {
+					fastcxx::filesystem::Directory *directory = new fastcxx::filesystem::Directory()->dopen( path.c_str() );
 					std::vector< std::string > *dir = directory->Read();
 					std::vector< std::string >::iterator dirit;
 					for( dirit=dir->begin(); dirit < dir->end(); dirit++ )
@@ -67,20 +66,17 @@ BEGIN_HTP_NAMESPACE
 
 		bool filesystem::exists( std::string path )
 		{
-			vivos::FileSystem *fs = new vivos::FileSystem();
-			return fs->exists( path.c_str() );
+			return fastcxx::filesystem::exists( path.c_str() );
 		}
 
 		bool filesystem::is_path( std::string path )
 		{
-			vivos::FileSystem *fs = new vivos::FileSystem();
-			return fs->is_directory( path.c_str() );
+			return fastcxx::filesystem::is_path( path.c_str() );
 		}
 
 		bool filesystem::is_file( std::string file )
 		{
-			vivos::FileSystem *fs = new vivos::FileSystem();
-			return fs->is_file( file.c_str() );
+			return fastcxx::filesystem::is_file( path.c_str() );
 		}
 
 		irr::io::IFileSystem	*filesystem::getFileSystemCore()

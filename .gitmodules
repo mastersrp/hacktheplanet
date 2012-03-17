@@ -1,6 +1,3 @@
-[submodule "vivos"]
-	path = vivos
-	url = git://github.com/mastersrp/vivos
-[submodule "libscript"]
-	path = libscript
-	url = git://github.com/mastersrp/libscript
+[submodule "fastcxx"]
+	path = fastcxx
+	url = git://github.com/mastersrp/fastcxx.git

@@ -1,10 +1,9 @@
-include( "../libscript" )
-include( "../vivos" )
+include( "../fastcxx/build" )
 
 solution "HackThePlanet"
 	configurations { "Debug", "Release" }
 	libdirs { "../lib" }
-	includedirs { "../include", "../libscript/include", "../vivos/include" }
+	includedirs { "../include", "../fastcxx/include" }
 	location( "projects/" .. _ACTION )
 	
 	configuration "Debug"
@@ -31,5 +30,5 @@ solution "HackThePlanet"
 		kind "WindowedApp"
 		targetdir "../bin"
 		language "C++"
-		files { "../src/htp/**.cpp" }
-		links { "kernel", "renderer", "Vivos/vivos" }
+		files { "../game/**.cpp" }
+		links { "kernel", "renderer" }
