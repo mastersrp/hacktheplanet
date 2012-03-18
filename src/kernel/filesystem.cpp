@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include <vector>
 #include <irrlicht/irrlicht.h>
 
 BEGIN_HTP_NAMESPACE
@@ -35,18 +36,19 @@ BEGIN_HTP_NAMESPACE
 		int filesystem::setWritePath( std::string path )
 		{
 			std::cout << path << std::endl;
+			fastcxx::Filesystem *fs = new fastcxx::Filesystem();
 			if( fastcxx::filesystem::exists( path.c_str() ) ) {
 				if( fastcxx::filesystem::is_file( path.c_str() ) ) {
 					return 300;
 				} else if ( fastcxx::filesystem::is_directory( path.c_str() ) ) {
-					fastcxx::filesystem::Directory *directory = new fastcxx::filesystem::Directory()->dopen( path.c_str() );
-					std::vector< std::string > *dir = directory->Read();
-					std::vector< std::string >::iterator dirit;
+					fastcxx::filesystem::Directory *directory = fs->dopen( path.c_str() );
+					std::vector< char* > *dir = directory->Read();
+					std::vector< char* >::iterator dirit;
 					for( dirit=dir->begin(); dirit < dir->end(); dirit++ )
 					{
-						irr::core::stringw str = irr::core::stringw( *dirit->c_str() );
-						const char *file = *dirit->c_str();
-						if( fs->is_file( file ) ) {
+						irr::core::stringw str = irr::core::stringw( (const char*)*dirit );
+						const char *file = *dirit;
+						if( fastcxx::filesystem::is_file( file ) ) {
 							this->FileSystem->addFileArchive( str );
 						}
 					}
@@ -71,12 +73,12 @@ BEGIN_HTP_NAMESPACE
 
 		bool filesystem::is_path( std::string path )
 		{
-			return fastcxx::filesystem::is_path( path.c_str() );
+			return fastcxx::filesystem::is_directory( path.c_str() );
 		}
 
 		bool filesystem::is_file( std::string file )
 		{
-			return fastcxx::filesystem::is_file( path.c_str() );
+			return fastcxx::filesystem::is_file( file.c_str() );
 		}
 
 		irr::io::IFileSystem	*filesystem::getFileSystemCore()
