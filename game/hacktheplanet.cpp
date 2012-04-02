@@ -51,12 +51,11 @@ int main( int argc, char *argv[] )
 	std::string enginescript = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
 	std::string enginedata = settings.get<std::string>("profile."+settings.get<std::string>(profile,"default")+".data", "data/" );
 	std::cout << "[*] Loading script framework..." << std::endl;
-	if( g_ScriptState->DoFile( enginescript ) != 0 ) {
+	if( g_ScriptVM->DoFile( enginescript ) != 0 ) {
 		std::cout << "[note] did something go wrong?" << std::endl;
 	}
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
 	
-	g_ScriptHook->onInit();
 	g_Renderer->createDevice();
 	g_FileSystem->insertDevice( g_Renderer->getDevice() );
 	int err = g_FileSystem->setWritePath( enginedata );
@@ -85,9 +84,6 @@ int main( int argc, char *argv[] )
 			g_Renderer->getDevice()->yield();
 		}
 	}
-
-	// Ending scriptHook
-	g_ScriptHook->onExit();
 	g_Renderer->getDevice()->drop();
 	return 0;
 }
