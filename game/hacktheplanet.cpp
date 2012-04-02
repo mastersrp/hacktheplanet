@@ -51,7 +51,7 @@ int main( int argc, char *argv[] )
 	std::string enginescript = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
 	std::string enginedata = settings.get<std::string>("profile."+settings.get<std::string>(profile,"default")+".data", "data/" );
 	std::cout << "[*] Loading script framework..." << std::endl;
-	if( g_ScriptVM->DoFile( enginescript ) != 0 ) {
+	if( g_ScriptVM->DoFile( enginescript.c_str() ) != 0 ) {
 		std::cout << "[note] did something go wrong?" << std::endl;
 	}
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
