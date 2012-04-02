@@ -7,11 +7,10 @@ solution "HackThePlanet"
 	location( "projects/" .. _ACTION )
 	
 	configuration "Debug"
-		defines { "_DEBUG", "VIVOS_USE_NAMESPACE", "VIVOS_HEADER_ONLY" }
+		defines { "_DEBUG" }
 		flags { "Symbols" }
 	
 	configuration "Release"
-		defines { "VIVOS_USE_NAMESPACE", "VIVOS_HEADER_ONLY" }
 		flags { "Optimize", "StaticRuntime" }
 
 	project "kernel"

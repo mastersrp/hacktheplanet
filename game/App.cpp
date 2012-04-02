@@ -8,18 +8,16 @@
 namespace HTP {
 	App::App( int argc, char *argv[] )
 	{
-		this->renderer = new render::glApp();
-		this->scriptState = new script::state();
-		this->scriptHook = new script::hook();
-		this->fileSystem = new kernel::filesystem( argv[0] );
+		this->renderer 		= new render::glApp();
+		this->scriptvm		= new fastcxx::script::LuaVM();
+		this->fileSystem 	= new kernel::filesystem( argv[0] );
 	}
 
 	App::~App()
 	{
 		this->renderer->getDevice()->drop();
 		delete renderer;
-		delete scriptState;
-		delete scriptHook;
+		delete scriptvm;
 		delete fileSystem;
 	}
 
@@ -28,14 +26,9 @@ namespace HTP {
 		return this->renderer;
 	}
 
-	script::state *App::getScriptState()
+	fastcxx::script::LuaVM *App::getScriptVM()
 	{
-		return this->scriptState;
-	}
-
-	script::hook *App::getScriptHook()
-	{
-		return this->scriptHook;
+		return this->scriptvm;
 	}
 
 	kernel::filesystem *App::getFileSystem()

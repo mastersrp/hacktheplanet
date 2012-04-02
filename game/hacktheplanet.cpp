@@ -14,7 +14,7 @@
 #include <htp/render.hpp>
 #include <irrlicht/irrlicht.h>
 // Scripting library
-#include <script.hpp>
+#include <fastcxx/script/luavm.hpp>
 // Low-level library
 #include <htp/kernel.hpp>
 // Other
@@ -25,8 +25,7 @@ int main( int argc, char *argv[] )
 
 	HTP::App				*g_App = new HTP::App( argc, argv );
 	HTP::render::glApp		*g_Renderer = g_App->getRenderer();
-	script::state			*g_ScriptState = g_App->getScriptState();
-	script::hook			*g_ScriptHook = g_App->getScriptHook();
+	fastcxx::script::LuaVM	*g_ScriptVM = g_App->getScriptVM();
 	HTP::kernel::filesystem	*g_FileSystem = g_App->getFileSystem();
 
 	#ifdef HTP_CXX0X
@@ -37,8 +36,7 @@ int main( int argc, char *argv[] )
 	// Setting up filesystem and paths
 	// Script initialization
 	std::cout << "[*I Initializing scripting system" << std::endl;
-	g_ScriptState->CreateState();
-	g_ScriptHook->InsertState( g_ScriptState->getState() );
+	g_ScriptVM->Init();
 	// Settings parsing
 	std::cout << "[*] Loading settings...";
 	boost::property_tree::ptree settings;
