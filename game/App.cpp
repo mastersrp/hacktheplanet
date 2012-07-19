@@ -9,7 +9,7 @@ namespace HTP {
 	App::App( int argc, char *argv[] )
 	{
 		this->renderer 		= new render::glApp();
-		this->scriptvm		= new fastcxx::script::LuaVM();
+		this->scriptvm		= new script::LuaVM();
 		this->fileSystem 	= new kernel::filesystem( argv[0] );
 	}
 
@@ -26,7 +26,7 @@ namespace HTP {
 		return this->renderer;
 	}
 
-	fastcxx::script::LuaVM *App::getScriptVM()
+	script::LuaVM *App::getScriptVM()
 	{
 		return this->scriptvm;
 	}

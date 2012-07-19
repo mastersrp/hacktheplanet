@@ -5,7 +5,7 @@
 #ifndef HTP_APP_HPP
 #define HTP_APP_HPP
 #include <htp/config.hpp>
-#include <fastcxx/script/luavm.hpp>
+#include <htp/script/luavm.hpp>
 #include <htp/render.hpp>
 #include <htp/kernel.hpp>
 
@@ -16,13 +16,13 @@ namespace HTP {
 			virtual ~App();
 
 			virtual render::glApp 			*getRenderer();
-			virtual fastcxx::script::LuaVM	*getScriptVM();
-			virtual kernel::filesystem		*getFileSystem();
+			virtual script::LuaVM				*getScriptVM();
+			virtual kernel::filesystem	*getFileSystem();
 		private:
-			render::glApp 				*renderer;
-			fastcxx::script::LuaVM		*scriptvm;
-			kernel::filesystem			*fileSystem;
+			render::glApp 			*renderer;
+			script::LuaVM				*scriptvm;
+			kernel::filesystem	*fileSystem;
 	};
 }
 
-#endif /* HTP_APP_HPP */
+#endif /* HTP_APP_HPP *

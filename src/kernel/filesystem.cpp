@@ -4,8 +4,6 @@
  */
 #include <htp/config.hpp>
 #include <htp/kernel/filesystem.hpp>
-#include <fastcxx/filesystem.hpp>
-#include <fastcxx/types/string.hpp>
 #include <iostream>
 #include <string>
 #include <set>
@@ -36,19 +34,19 @@ BEGIN_HTP_NAMESPACE
 		int filesystem::setWritePath( std::string path )
 		{
 			std::cout << path << std::endl;
-			fastcxx::Filesystem *fs = new fastcxx::Filesystem();
-			if( fastcxx::filesystem::exists( path.c_str() ) ) {
-				if( fastcxx::filesystem::is_file( path.c_str() ) ) {
+			kernel::Filesystem *fs = new kernel::Filesystem();
+			if( kernel::filesystem::exists( path.c_str() ) ) {
+				if( kernel::filesystem::is_file( path.c_str() ) ) {
 					return 300;
-				} else if ( fastcxx::filesystem::is_directory( path.c_str() ) ) {
-					fastcxx::filesystem::Directory *directory = fs->dopen( path.c_str() );
+				} else if ( kernel::filesystem::is_directory( path.c_str() ) ) {
+					kernel::filesystem::Directory *directory = fs->dopen( path.c_str() );
 					std::vector< char* > *dir = directory->Read();
 					std::vector< char* >::iterator dirit;
 					for( dirit=dir->begin(); dirit < dir->end(); dirit++ )
 					{
 						irr::core::stringw str = irr::core::stringw( (const char*)*dirit );
 						const char *file = *dirit;
-						if( fastcxx::filesystem::is_file( file ) ) {
+						if( kernel::filesystem::is_file( file ) ) {
 							this->FileSystem->addFileArchive( str );
 						}
 					}
@@ -68,17 +66,17 @@ BEGIN_HTP_NAMESPACE
 
 		bool filesystem::exists( std::string path )
 		{
-			return fastcxx::filesystem::exists( path.c_str() );
+			return true;
 		}
 
 		bool filesystem::is_path( std::string path )
 		{
-			return fastcxx::filesystem::is_directory( path.c_str() );
+			return true;
 		}
 
 		bool filesystem::is_file( std::string file )
 		{
-			return fastcxx::filesystem::is_file( file.c_str() );
+			return true;
 		}
 
 		irr::io::IFileSystem	*filesystem::getFileSystemCore()

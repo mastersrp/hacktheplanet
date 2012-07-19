@@ -14,7 +14,7 @@
 #include <htp/render.hpp>
 #include <irrlicht/irrlicht.h>
 // Scripting library
-#include <fastcxx/script/luavm.hpp>
+#include <htp/script/luavm.hpp>
 // Low-level library
 #include <htp/kernel.hpp>
 // Other
@@ -23,9 +23,9 @@
 int main( int argc, char *argv[] )
 {
 
-	HTP::App				*g_App = new HTP::App( argc, argv );
-	HTP::render::glApp		*g_Renderer = g_App->getRenderer();
-	fastcxx::script::LuaVM	*g_ScriptVM = g_App->getScriptVM();
+	HTP::App								*g_App = new HTP::App( argc, argv );
+	HTP::render::glApp			*g_Renderer = g_App->getRenderer();
+	HTP::script::LuaVM			*g_ScriptVM = g_App->getScriptVM();
 	HTP::kernel::filesystem	*g_FileSystem = g_App->getFileSystem();
 
 	#ifdef HTP_CXX0X
