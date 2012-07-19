@@ -1,9 +1,7 @@
-include( "../fastcxx/build" )
-
 solution "HackThePlanet"
 	configurations { "Debug", "Release" }
 	libdirs { "../lib" }
-	includedirs { "../include", "../fastcxx/include" }
+	includedirs { "../include" }
 	location( "projects/" .. _ACTION )
 	
 	configuration "Debug"
