@@ -5,7 +5,7 @@
 #ifndef HTP_KERNEL_FILESYSTEM_HPP
 #define HTP_KERNEL_FILESYSTEM_HPP
 #include <htp/config.hpp>
-#include <string>
+#include <fastcxx/types/string.hpp>
 #include <set>
 #include <irrlicht/irrlicht.h>
 
@@ -18,17 +18,17 @@ BEGIN_HTP_NAMESPACE
 
 				virtual ~filesystem();
 				virtual void insertDevice( irr::IrrlichtDevice *device );
-				virtual int setWritePath( std::string path );
-				virtual std::string getFile( std::string file );
+				virtual int setWritePath( const char *path );
+				virtual fastcxx::String getFile( const char *file );
 
-				bool exists( std::string path );
-				bool is_path( std::string path );
-				bool is_file( std::string file );
+				bool exists( const char *path );
+				bool is_path( const char *path );
+				bool is_file( const char *file );
 
 				virtual irr::io::IFileSystem *getFileSystemCore();
 			private:
-				std::set< std::string >		fileList;
-				std::string					writePath;
+				std::set< char* >			fileList;
+				fastcxx::String				writePath;
 				irr::IrrlichtDevice			*device;
 				irr::io::IFileSystem		*FileSystem;
 		};

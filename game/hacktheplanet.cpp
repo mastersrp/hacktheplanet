@@ -6,10 +6,11 @@
 // STD LIBS
 #include <iostream>
 #include <fstream>
-#include <string>
-// BOOST C++
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
+// String library
+#include <fastcxx/types/string.hpp>
+// Settings system
+#include <fastcxx/property_tree/ptree.hpp>
+#include <fastcxx/property_tree/json.hpp>
 // Graphical/Visual
 #include <htp/render.hpp>
 #include <irrlicht/irrlicht.h>
@@ -39,26 +40,23 @@ int main( int argc, char *argv[] )
 	g_ScriptVM->Init();
 	// Settings parsing
 	std::cout << "[*] Loading settings...";
-	boost::property_tree::ptree settings;
+	fastcxx::property_tree::ptree ptree;
     if( g_FileSystem->exists( "data/settings.json" ) == false || g_FileSystem->is_file( "data/settings.json") == false ) {
-		std::cerr << "Couldn't open 'settings.json'!" << std::endl;
+		std::cerr << "Couldn't open 'data/settings.json'!" << std::endl;
 	} else {
-		boost::property_tree::read_json( "data/settings.json", settings );
+		fastcxx::property_tree::JSONParser().ReadFile( "data/settings.json", ptree );
 		std::cout << "Done!" << std::endl;
 	}
-	std::string profile = settings.get<std::string>("profile", "default");
-	std::cout << "[i] Using '" << profile << "' profile." << std::endl;
-	std::string enginescript = settings.get<std::string>("profiles."+settings.get<std::string>(profile,"default")+".engine", "data/lua/engine" );
-	std::string enginedata = settings.get<std::string>("profile."+settings.get<std::string>(profile,"default")+".data", "data/" );
 	std::cout << "[*] Loading script framework..." << std::endl;
-	if( g_ScriptVM->DoFile( enginescript.c_str() ) != 0 ) {
-		std::cout << "[note] did something go wrong?" << std::endl;
-	}
+	#ifdef HTP_CXX0X
 	std::cout << "[i] Loading took " << timer_loadtime.get_duration().count() << " nanoseconds." << std::endl;
+	#else
+	std::cout << "[i] Loading took " << timer_loadtime.get_duration() << " nanoseconds." << std::endl;
+	#endif
 	
 	g_Renderer->createDevice();
 	g_FileSystem->insertDevice( g_Renderer->getDevice() );
-	int err = g_FileSystem->setWritePath( enginedata );
+	int err = g_FileSystem->setWritePath( "data/" );
 	switch( err )
 	{
 		case 200 :

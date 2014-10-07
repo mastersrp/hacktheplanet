@@ -7,9 +7,9 @@
 #include <fastcxx/filesystem.hpp>
 #include <fastcxx/types/string.hpp>
 #include <iostream>
-#include <string>
 #include <set>
 #include <vector>
+#include <cstring>
 #include <irrlicht/irrlicht.h>
 
 BEGIN_HTP_NAMESPACE
@@ -33,15 +33,15 @@ BEGIN_HTP_NAMESPACE
 			this->FileSystem = device->getFileSystem();
 		}
 
-		int filesystem::setWritePath( std::string path )
+		int filesystem::setWritePath( const char *path )
 		{
 			std::cout << path << std::endl;
 			fastcxx::Filesystem *fs = new fastcxx::Filesystem();
-			if( fastcxx::filesystem::exists( path.c_str() ) ) {
-				if( fastcxx::filesystem::is_file( path.c_str() ) ) {
+			if( fastcxx::filesystem::exists( path ) ) {
+				if( fastcxx::filesystem::is_file( path ) ) {
 					return 300;
-				} else if ( fastcxx::filesystem::is_directory( path.c_str() ) ) {
-					fastcxx::filesystem::Directory *directory = fs->dopen( path.c_str() );
+				} else if ( fastcxx::filesystem::is_directory( path ) ) {
+					fastcxx::filesystem::Directory *directory = fs->dopen( path );
 					std::vector< char* > *dir = directory->Read();
 					std::vector< char* >::iterator dirit;
 					for( dirit=dir->begin(); dirit < dir->end(); dirit++ )
@@ -56,29 +56,31 @@ BEGIN_HTP_NAMESPACE
 			}
 		}
 
-		std::string filesystem::getFile( std::string file )
+		fastcxx::String filesystem::getFile( const char *filename )
 		{
+			char *file;
+			strcpy(file, filename);
 			if( fileList.find( file ) != fileList.end() )
 			{
-				return file;
+				return (fastcxx::String)file;
 			} else {
-				return (std::string)"";
+				return (fastcxx::String)"";
 			}
 		}
 
-		bool filesystem::exists( std::string path )
+		bool filesystem::exists( const char *path )
 		{
-			return fastcxx::filesystem::exists( path.c_str() );
+			return fastcxx::filesystem::exists( path );
 		}
 
-		bool filesystem::is_path( std::string path )
+		bool filesystem::is_path( const char *path )
 		{
-			return fastcxx::filesystem::is_directory( path.c_str() );
+			return fastcxx::filesystem::is_directory( path );
 		}
 
-		bool filesystem::is_file( std::string file )
+		bool filesystem::is_file( const char *file )
 		{
-			return fastcxx::filesystem::is_file( file.c_str() );
+			return fastcxx::filesystem::is_file( file );
 		}
 
 		irr::io::IFileSystem	*filesystem::getFileSystemCore()
